@@ -41,7 +41,6 @@ export const ProductsNavigator = () => {
       <ProductsStack.Screen
         options={{
           headerShown: false,
-
           cardStyle: { backgroundColor: "rgba(19, 19, 20, 0.8)" },
           presentation: "transparentModal",
           animation: "none",

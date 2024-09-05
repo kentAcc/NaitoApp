@@ -2,7 +2,7 @@ import React, { createElement } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { Text, Button } from "react-native";
+import { Text, Button, LogoTitle } from "react-native";
 import { CartInfoComponent } from "../../features/cart/cart.info.component";
 import { SafeArea } from "../../components/utility/safe-area.component";
 
@@ -34,7 +34,6 @@ const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
 
   return {
-    headerShown: false,
     tabBarIcon: ({ size, color }) => (
       <Ionicons name={iconName} size={size} color={color} />
     ),
@@ -51,10 +50,24 @@ export const AppNavigator = () => (
       <Tab.Screen
         name="Productos"
         component={ProductsNavigator}
-        style={{ backgroundcolor: "green" }}
+        options={{ headerShown: false }}
       />
-      <Tab.Screen name="Carrito" component={CartInfoComponent} />
-      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen
+        name="Carrito"
+        component={CartInfoComponent}
+        options={{
+          headerShown: true,
+          title: "Carrito de compras",
+          headerStyle: {
+            backgroundColor: "#EDD901",
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{ headerShown: true }}
+      />
     </Tab.Navigator>
   </NavigationContainer>
 );

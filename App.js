@@ -6,7 +6,7 @@ import { BannerContextProvider } from "./src/services/banners/banner.context";
 import { ProductsContextProvider } from "./src/services/products/products.context";
 import { CartContextProvider } from "./src/services/cart/cart.context";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Navigation } from "./src/infrastructure/navigation";
 import {
   useFonts as useOswald,
@@ -31,7 +31,9 @@ export default function App() {
       <CartContextProvider>
         <ProductsContextProvider>
           <BannerContextProvider>
-            <Navigation />
+            <GestureHandlerRootView>
+              <Navigation />
+            </GestureHandlerRootView>
           </BannerContextProvider>
         </ProductsContextProvider>
       </CartContextProvider>

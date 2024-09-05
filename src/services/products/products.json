@@ -87,5 +87,49 @@
     ],
     "rating": 2,
     "price": 12.5
+  },
+  {
+    "id": 9,
+    "name": "KIT 3 LÁMPARAS SOLARES 360°",
+    "icon": "",
+    "photos": [
+      "https://tiendasnaito.com.mx/wp-content/uploads/2024/06/cabezal.jpg",
+      "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-8.28.54-PM.jpeg"
+    ],
+    "rating": 2,
+    "price": 12.5
+  },
+  {
+    "id": 10,
+    "name": "KIT 3 LÁMPARAS SOLARES 360°",
+    "icon": "",
+    "photos": [
+      "https://tiendasnaito.com.mx/wp-content/uploads/2024/06/cabezal.jpg",
+      "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-8.28.54-PM.jpeg"
+    ],
+    "rating": 2,
+    "price": 12.5
+  },
+  {
+    "id": 11,
+    "name": "KIT 3 LÁMPARAS SOLARES 360°",
+    "icon": "",
+    "photos": [
+      "https://tiendasnaito.com.mx/wp-content/uploads/2024/06/cabezal.jpg",
+      "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-8.28.54-PM.jpeg"
+    ],
+    "rating": 2,
+    "price": 12.5
+  },
+  {
+    "id": 12,
+    "name": "KIT 3 LÁMPARAS SOLARES 360°",
+    "icon": "",
+    "photos": [
+      "https://tiendasnaito.com.mx/wp-content/uploads/2024/06/cabezal.jpg",
+      "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-8.28.54-PM.jpeg"
+    ],
+    "rating": 2,
+    "price": 12.5
   }
 ]
