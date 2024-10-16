@@ -1,4 +1,4 @@
-import React, { createElement } from "react";
+import React, { createElement, useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -7,8 +7,12 @@ import { CartInfoComponent } from "../../features/cart/cart.info.component";
 import { SafeArea } from "../../components/utility/safe-area.component";
 
 import { ProductsNavigator } from "./products.navigator";
+import { AccountNavigator } from "./account.navigator";
 import { Badge, Appbar, Entypo } from "react-native-paper";
 import { Header } from "@react-navigation/stack";
+import { View } from "react-native";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import LoginScreen from "../../features/account/screens/login.screen";
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
@@ -17,16 +21,9 @@ const TAB_ICON = {
   Settings: "settings",
 };
 
-const Settings = ({ navigation }) => (
-  <SafeArea>
-    <Text>Settings</Text>
-    <Text style={{ fontSize: 30 }}>This is the home screen!</Text>
-    <Button onPress={() => navigation.navigate("carrito")} title="Open Modal" />
-  </SafeArea>
-);
 const DetailsScreen = () => (
   <SafeArea>
-    <Text>Map</Text>
+    <View>Map</View>
   </SafeArea>
 );
 
@@ -44,30 +41,49 @@ const createScreenOptions = ({ route }) => {
   };
 };
 
-export const AppNavigator = () => (
-  <NavigationContainer>
-    <Tab.Navigator screenOptions={createScreenOptions}>
-      <Tab.Screen
-        name="Productos"
-        component={ProductsNavigator}
-        options={{ headerShown: false }}
-      />
-      <Tab.Screen
-        name="Carrito"
-        component={CartInfoComponent}
-        options={{
-          headerShown: true,
-          title: "Carrito de compras",
-          headerStyle: {
-            backgroundColor: "#EDD901",
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{ headerShown: true }}
-      />
-    </Tab.Navigator>
-  </NavigationContainer>
-);
+export const AppNavigator = () => {
+  const { isAuthenticated } = useContext(AuthenticationContext);
+
+  const Settings = ({ navigation }) => (
+    <SafeArea>
+      <View>
+        {isAuthenticated && <Text>hola</Text>}
+        {!isAuthenticated && <Text>no</Text>}
+      </View>
+    </SafeArea>
+  );
+
+  return (
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={createScreenOptions}>
+        <Tab.Screen
+          name="Productos"
+          component={ProductsNavigator}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="Carrito"
+          component={CartInfoComponent}
+          options={{
+            headerShown: true,
+            title: "Carrito de compras",
+            headerStyle: {
+              backgroundColor: "#EDD901",
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={AccountNavigator}
+          options={{
+            headerShown: true,
+            title: "Account",
+            headerStyle: {
+              backgroundColor: "#EDD901",
+            },
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};

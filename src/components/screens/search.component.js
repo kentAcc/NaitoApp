@@ -4,6 +4,7 @@ import { Searchbar } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import { ProductsContext } from "../../services/products/products.context";
 import { StyleSheet, Text, View } from "react-native";
+
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
@@ -25,7 +26,7 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
       <LinearGradient colors={["#EDD901", "#EDD901"]}>
         <Searchbar
           onIconPress={onFavouritesToggle}
-          placeholder="Buscar en NAITO"
+          placeholder="buscar en Naito"
           value={searchKeyword}
           onSubmitEditing={() => {
             search(searchKeyword);
@@ -34,7 +35,10 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
             setSearchKeyword(text);
           }}
           style={{
-            height: 40,
+            height: 30,
+          }}
+          inputStyle={{
+            minHeight: 0, // Add this
           }}
         />
       </LinearGradient>

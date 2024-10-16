@@ -1,5 +1,8 @@
 import React, { useState, createContext, useEffect, useMemo } from "react";
-import { productsRequest } from "../../services/products/products.service";
+import {
+  productsRequest,
+  productsFiveStars,
+} from "../../services/products/products.service";
 
 export const ProductsContext = createContext();
 
@@ -11,9 +14,9 @@ export const ProductsContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const onSearch = (searchKeyword) => {
-    setIsLoading(true);
     setKeyword(searchKeyword);
   };
+
   const onEndReached = (searchKeyword) => {
     setIsLoading(true);
     setKeyword(searchKeyword);

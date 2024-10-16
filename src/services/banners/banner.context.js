@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { productsFiveStars } from "../../services/products/products.service";
 export const BannerContext = createContext();
-
 export const BannerContextProvider = ({ children }) => {
   useEffect(() => {
     productsFiveStars()

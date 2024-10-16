@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useEffect,
   useContext,
   useMemo,
   useCallback,
@@ -8,14 +7,7 @@ import React, {
 } from "react";
 import { SafeArea } from "../../components/utility/safe-area.component";
 
-import {
-  Avatar,
-  Button as ButtonA,
-  Card,
-  Text,
-  DataTable,
-  TouchableRipple,
-} from "react-native-paper";
+import { Avatar, Button as ButtonA, Text } from "react-native-paper";
 import styled from "styled-components/native";
 import { CartContext } from "../../services/cart/cart.context";
 import {
@@ -30,13 +22,7 @@ import {
 } from "react-native";
 import { Divider, useTheme, Button, ListItem } from "@rneui/themed";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import BottomSheet, {
-  BottomSheetView,
-  BottomSheetModalProvider,
-  BottomSheetModal,
-  Ges,
-  BottomSheetScrollView,
-} from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 import { SkiaShadow } from "react-native-skia-shadow";
 export const CartInfoComponent = (props) => {
@@ -160,7 +146,7 @@ export const CartInfoComponent = (props) => {
                       textAlignVertical: "center",
                     }}
                   >
-                    {item.quantity} Unidad1
+                    {item.quantity} Unidad(es)
                   </Text>
 
                   <Pricetext>

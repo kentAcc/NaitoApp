@@ -16,7 +16,7 @@ import SafeAreaView from "react-native-safe-area-view";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Search } from "./search.component";
 import { ProductsContext } from "../../services/products/products.context";
-
+import ImageSlider from "../Slider/ImageSlider.component";
 import styled from "styled-components";
 
 const width = Dimensions.get("screen").width;
@@ -52,7 +52,7 @@ export const ProductsScreen = (props) => {
           hidden={hidden}
         />
         <Search />
-
+        <ImageSlider />
         <FlatList
           style={{ flex: 1 / 2 }}
           vertical={true}

@@ -13,6 +13,13 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 
+import { useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
@@ -28,15 +35,17 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CartContextProvider>
-        <ProductsContextProvider>
-          <BannerContextProvider>
-            <GestureHandlerRootView>
-              <Navigation />
-            </GestureHandlerRootView>
-          </BannerContextProvider>
-        </ProductsContextProvider>
-      </CartContextProvider>
+      <AuthenticationContextProvider>
+        <CartContextProvider>
+          <ProductsContextProvider>
+            <BannerContextProvider>
+              <GestureHandlerRootView>
+                <Navigation />
+              </GestureHandlerRootView>
+            </BannerContextProvider>
+          </ProductsContextProvider>
+        </CartContextProvider>
+      </AuthenticationContextProvider>
     </ThemeProvider>
   );
 }

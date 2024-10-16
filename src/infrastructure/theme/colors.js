@@ -11,6 +11,7 @@ export const colors = {
     tertiary: "#F1F1F1",
     quaternary: "#FFFFFF",
     disabled: "#DEDEDE",
+    sliderName: "#b0b0b0",
     error: "#D0421B",
     success: "#138000",
   },
