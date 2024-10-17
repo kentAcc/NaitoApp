@@ -1,10 +1,11 @@
 import react from "react";
 import { Text, Card, Button } from "react-native-paper";
 import styled from "styled-components/native";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View, TouchableOpacity } from "react-native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../assets/star";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+
 const ProductCard = styled(Card)`
   background-color: transparent;
   justify-content: "space-between";

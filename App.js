@@ -1,5 +1,15 @@
-import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, FlatList, StatusBar } from "react-native";
+import {
+  View,
+  StatusBar,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Dimensions,
+  statusBarStyle,
+  statusBarTransition,
+  ScrollView,
+} from "react-native";
+
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { BannerContextProvider } from "./src/services/banners/banner.context";
@@ -19,8 +29,9 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
-
+import { ProductsRandomContextProvider } from "./src/services/productRandom/productsRandom.context";
 export default function App() {
+  const [hidden, setHidden] = useState(false);
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
 
@@ -39,9 +50,18 @@ export default function App() {
         <CartContextProvider>
           <ProductsContextProvider>
             <BannerContextProvider>
-              <GestureHandlerRootView>
-                <Navigation />
-              </GestureHandlerRootView>
+              <ProductsRandomContextProvider>
+                <GestureHandlerRootView>
+                  <StatusBar
+                    animated={true}
+                    backgroundColor="#EDD901"
+                    barStyle={"dark-content"}
+                    showHideTransition={statusBarTransition}
+                    hidden={hidden}
+                  />
+                  <Navigation />
+                </GestureHandlerRootView>
+              </ProductsRandomContextProvider>
             </BannerContextProvider>
           </ProductsContextProvider>
         </CartContextProvider>

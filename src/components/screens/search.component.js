@@ -29,7 +29,7 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
           placeholder="buscar en Naito"
           value={searchKeyword}
           onSubmitEditing={() => {
-            search(searchKeyword);
+            if (keyword !== searchKeyword) search(searchKeyword);
           }}
           onChangeText={(text) => {
             setSearchKeyword(text);

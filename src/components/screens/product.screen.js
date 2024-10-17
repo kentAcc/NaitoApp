@@ -17,7 +17,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Search } from "./search.component";
 import { ProductsContext } from "../../services/products/products.context";
 import ImageSlider from "../Slider/ImageSlider.component";
-import styled from "styled-components";
+import { ListComponent } from "../flatList/List.component";
 
 const width = Dimensions.get("screen").width;
 export const ProductsScreen = (props) => {
@@ -30,6 +30,8 @@ export const ProductsScreen = (props) => {
 
     props.navigation.navigate("Detail", product);
   };
+
+  useEffect(() => {}, [isLoading]);
 
   return (
     <>
@@ -52,27 +54,35 @@ export const ProductsScreen = (props) => {
           hidden={hidden}
         />
         <Search />
-        <ImageSlider />
-        <FlatList
-          style={{ flex: 1 / 2 }}
-          vertical={true}
-          showsHorizontalScrollIndicator={false}
-          numColumns={2}
-          data={products}
-          renderItem={({ item, index }) => (
-            <View
-              style={{
-                width: "48.5%",
-                resizeMode: "contain",
-                margin: 3,
-              }}
-            >
-              <TouchableOpacity onPress={() => actionOnRow(item)}>
-                <ProductInfoCard product={item}></ProductInfoCard>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
+
+        {(!products || products.length == 0) && (
+          <>
+            <ImageSlider />
+            <ListComponent />
+          </>
+        )}
+        {products && products.length > 0 && (
+          <FlatList
+            style={{ flex: 1 / 2 }}
+            vertical={true}
+            showsHorizontalScrollIndicator={false}
+            numColumns={2}
+            data={products}
+            renderItem={({ item, index }) => (
+              <View
+                style={{
+                  width: "48.5%",
+                  resizeMode: "contain",
+                  margin: 3,
+                }}
+              >
+                <TouchableOpacity onPress={() => actionOnRow(item)}>
+                  <ProductInfoCard product={item}></ProductInfoCard>
+                </TouchableOpacity>
+              </View>
+            )}
+          />
+        )}
       </SafeAreaProvider>
     </>
   );

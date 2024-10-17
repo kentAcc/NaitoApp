@@ -13,6 +13,8 @@ export const BannerContextProvider = ({ children }) => {
   const [productsB, setProducts] = useState([]);
   const [isLoadingB, setIsLoading] = useState(false);
   const [errorB, setError] = useState(false);
+
+  const [productsC, setProductsC] = useState([]);
   return (
     <BannerContext.Provider value={{ isLoadingB, productsB, errorB }}>
       {children}

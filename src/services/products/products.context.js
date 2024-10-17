@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useMemo } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import {
   productsRequest,
   productsFiveStars,
@@ -14,24 +14,25 @@ export const ProductsContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const onSearch = (searchKeyword) => {
+    setIsLoading(true);
     setKeyword(searchKeyword);
   };
 
   const onEndReached = (searchKeyword) => {
-    setIsLoading(true);
     setKeyword(searchKeyword);
   };
   useEffect(() => {
     if (keyword.length < 3) {
-      // don't do anything
+      setIsLoading(false);
       return;
     }
 
     productsRequest(keyword.toLowerCase())
       .then((result) => {
-        setIsLoading(true);
-        setProducts(result);
+        console.log("productsRequest");
         setIsLoading(false);
+
+        setProducts(result);
       })
       .catch((err) => {
         setIsLoading(false);

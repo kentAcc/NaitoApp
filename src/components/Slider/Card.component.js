@@ -3,17 +3,25 @@ import { View, Image, Text, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 const TextName = styled.Text`
   padding: 2px;
-  font-size: 9px;
+  font-size: 10px;
   text-align: left;
   font-weight: Thin;
+  text-transform: capitalize;
   color: ${(props) => props.theme.colors.ui.sliderName};
 `;
-const Card = ({ image, title }) => {
+const Price = styled.Text`
+  padding: 2px;
+  font-size: 14px;
+  text-align: left;
+  font-weight: Thin;
+  text-transform: capitalize;
+`;
+const Card = ({ image, title, price }) => {
   return (
     <View style={styles.card}>
       <Image source={{ uri: image }} style={styles.image} />
       <TextName>{title}</TextName>
-      <TextName>{title}</TextName>
+      <Price>${price}</Price>
     </View>
   );
 };

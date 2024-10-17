@@ -17,9 +17,7 @@ import LottieView from "lottie-react-native";
 export const AccountScreen = ({ navigation }) => {
   const { user, onLogout, isAuthenticated } = useContext(AuthenticationContext);
 
-  useEffect(() => {
-    console.log(user, "AccountScreen");
-  }, [user]);
+  useEffect(() => {}, [user]);
   const handleLogOut = async () => {
     try {
       await onLogout(auth);

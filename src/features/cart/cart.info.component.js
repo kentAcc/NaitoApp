@@ -20,7 +20,7 @@ import {
   FlatList,
   StatusBar,
 } from "react-native";
-import { Divider, useTheme, Button, ListItem } from "@rneui/themed";
+
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
@@ -66,9 +66,7 @@ export const CartInfoComponent = (props) => {
   const snapPoints = useMemo(() => ["100%"], []);
 
   // callbacks
-  const handleSheetChange = useCallback((index) => {
-    console.log("handleSheetChange", index);
-  }, []);
+  const handleSheetChange = useCallback((index) => {}, []);
   const handleSnapPress = useCallback((index) => {
     sheetRef.current?.snapToIndex(index);
   }, []);

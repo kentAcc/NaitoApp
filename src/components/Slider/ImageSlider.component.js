@@ -16,7 +16,6 @@ const cardWidth = width / 4; // Set width for three images at a time
 
 const ImageSlider = () => {
   const { productsB } = useContext(BannerContext);
-  console.log(productsB, "productsB");
 
   const scrollViewRef = useRef(null);
   const totalCards = images.length;
@@ -34,7 +33,12 @@ const ImageSlider = () => {
 
     return () => clearInterval(interval);
   }, []);
-
+  const truncateString = (str, maxLength) => {
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength) + "...";
+    }
+    return str;
+  };
   return (
     <View style={styles.container}>
       <Animated.ScrollView
@@ -54,7 +58,11 @@ const ImageSlider = () => {
               padding: 2,
             }}
           >
-            <Card image={product.photos[0]} title={product.name} />
+            <Card
+              image={product.photos[0]}
+              title={truncateString(product.name, 25)}
+              price={product.price}
+            />
           </View>
         ))}
         {/* Add a clone of the first card to enable seamless looping */}
@@ -65,7 +73,7 @@ const ImageSlider = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 150,
+    height: 170,
   },
 });
 
