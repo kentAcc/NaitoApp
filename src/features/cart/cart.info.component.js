@@ -15,15 +15,12 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  Modal,
   ScrollView,
-  FlatList,
-  StatusBar,
 } from "react-native";
 
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+
 import { SkiaShadow } from "react-native-skia-shadow";
 export const CartInfoComponent = (props) => {
   const handleSheetChanges = useCallback((index: number) => {
@@ -40,7 +37,7 @@ export const CartInfoComponent = (props) => {
     font-size: ${(props) => props.theme.fontSizes.title};
   `;
 
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, count } = useContext(CartContext);
 
   const [isVisible, setIsVisible] = useState(true);
   const list = [
@@ -189,7 +186,7 @@ export const CartInfoComponent = (props) => {
                     ]}
                   >
                     <View style={[{ flex: 1, flexDirection: "row" }]}>
-                      <Text>Productos</Text>
+                      <Text>Productos({count})</Text>
                     </View>
                     <View
                       style={[

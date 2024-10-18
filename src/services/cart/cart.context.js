@@ -10,9 +10,14 @@ export const CartContextProvider = ({
   price,
 }) => {
   const [cart, setCart] = useState(() => []);
-
+  const [count, setCount] = useState(0);
   useEffect(() => {
-    console.log("carrito actualizado");
+    const totalProducts = cart.reduce(
+      (sum, current) => sum + Number(current.quantity),
+      0
+    );
+    setCount(totalProducts);
+    console.log("carrito actualizado", cart.length);
   }, [cart, id, quantity]);
 
   const add = ({ id, photos, quantity, name, price }) => {
@@ -36,7 +41,7 @@ export const CartContextProvider = ({
 
   return (
     <CartContext.Provider
-      value={{ cart, removeCart: remove, addCart: add, setCart }}
+      value={{ cart, removeCart: remove, addCart: add, setCart, count }}
     >
       {children}
     </CartContext.Provider>

@@ -29,9 +29,7 @@ export const ProductsContextProvider = ({ children }) => {
 
     productsRequest(keyword.toLowerCase())
       .then((result) => {
-        console.log("productsRequest");
         setIsLoading(false);
-
         setProducts(result);
       })
       .catch((err) => {

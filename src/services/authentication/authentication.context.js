@@ -50,7 +50,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     await signOut(auth);
     setUser(null);
     setIsAuthenticated(false);
-    console.log("cerro");
+ 
   };
   return (
     <AuthenticationContext.Provider

@@ -57,8 +57,8 @@ export const ProductsScreen = (props) => {
 
         {(!products || products.length == 0) && (
           <>
-            <ImageSlider />
-            <ListComponent />
+            <ImageSlider props={props.navigation} />
+            <ListComponent props={props.navigation} />
           </>
         )}
         {products && products.length > 0 && (

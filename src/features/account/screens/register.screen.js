@@ -21,7 +21,7 @@ export const RegisterScreen = ({ navigation }) => {
   const handleLogin = async () => {
     try {
       await onRegister({ email, password, repeatedPassword });
-      console.log(user, "from login");
+ 
       // Navigate to the next screen or perform further actions
     } catch (e) {
       //setError(e.message);

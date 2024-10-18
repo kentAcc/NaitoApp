@@ -9,6 +9,7 @@ const TextName = styled.Text`
   text-transform: capitalize;
   color: ${(props) => props.theme.colors.ui.sliderName};
 `;
+
 const Price = styled.Text`
   padding: 2px;
   font-size: 14px;

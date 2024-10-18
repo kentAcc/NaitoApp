@@ -1,50 +1,17 @@
 import React, { useContext } from "react";
-import {
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-} from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import { Divider, Text } from "react-native-paper";
 import CardItem from "./card.component"; // Adjust the path if necessary
 import { ProductsRandomContext } from "../../services/productRandom/productsRandom.context";
 import { View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import { SafeArea } from "../utility/safe-area.component";
-const DATA = [
-  {
-    id: "1",
-    title: "Card 1",
-    description: "This is the description for card 1.",
-    image: "https://via.placeholder.com/150?text=Image+1",
-  },
-  {
-    id: "2",
-    title: "Card 2",
-    description: "This is the description for card 2.",
-    image: "https://via.placeholder.com/150?text=Image+2",
-  },
-  {
-    id: "3",
-    title: "Card 3",
-    description: "This is the description for card 3.",
-    image: "https://via.placeholder.com/150?text=Image+3",
-  },
-  {
-    id: "4",
-    title: "Card 4",
-    description: "This is the description for card 4.",
-    image: "https://via.placeholder.com/150?text=Image+4",
-  },
-];
 
-export const ListComponent = (props) => {
+export const ListComponent = ({ props }) => {
   const { isLoadingB, errorB, productsC } = useContext(ProductsRandomContext);
-  console.log(props, "props");
+
   const actionOnRow = (item) => {
     const product = { ...item, quantity: 1 };
-
-    props.navigation.navigate("Detail", product);
+    props.navigate("Detail", product);
   };
   return (
     <>
@@ -57,8 +24,8 @@ export const ListComponent = (props) => {
           marginTop: 0,
           backgroundColor: "white",
           shadowColor: "transparent",
-          marginLeft: 10,
-          marginRight: 10,
+          marginLeft: 5,
+          marginRight: 5,
           flex: 1,
           flexDirection: "row",
           shadowColor: "#171717",
@@ -104,11 +71,11 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "white",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    marginTop: 5,
+    marginLeft: 5,
+    marginRight: 5,
     padding: 10,
   },
   shadowProp: {

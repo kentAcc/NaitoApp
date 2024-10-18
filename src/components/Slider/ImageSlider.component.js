@@ -1,24 +1,26 @@
 import React, { useRef, useEffect, useContext } from "react";
-import { View, Animated, StyleSheet, Dimensions } from "react-native";
+import {
+  View,
+  Animated,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import Card from "./Card.component"; // Adjust the path if necessary
 import { BannerContext } from "../../services/banners/banner.context";
-
-const images = [
-  "https://via.placeholder.com/300x200?text=Image+1",
-  "https://via.placeholder.com/300x200?text=Image+2",
-  "https://via.placeholder.com/300x200?text=Image+3",
-  "https://via.placeholder.com/300x200?text=Image+4",
-  "https://via.placeholder.com/300x200?text=Image+5",
-];
 
 const { width } = Dimensions.get("window");
 const cardWidth = width / 4; // Set width for three images at a time
 
-const ImageSlider = () => {
+const ImageSlider = ({ props }) => {
+  const actionOnRow = (item) => {
+    const product = { ...item, quantity: 1 };
+    props.navigate("Detail", product);
+  };
   const { productsB } = useContext(BannerContext);
 
   const scrollViewRef = useRef(null);
-  const totalCards = images.length;
+  const totalCards = productsB.length;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -49,21 +51,23 @@ const ImageSlider = () => {
         scrollEventThrottle={16}
       >
         {productsB.map((product, index) => (
-          <View
-            key={index}
-            style={{
-              width: cardWidth,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              padding: 2,
-            }}
-          >
-            <Card
-              image={product.photos[0]}
-              title={truncateString(product.name, 25)}
-              price={product.price}
-            />
-          </View>
+          <TouchableOpacity onPress={() => actionOnRow(product)}>
+            <View
+              key={index}
+              style={{
+                width: cardWidth,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 2,
+              }}
+            >
+              <Card
+                image={product.photos[0]}
+                title={truncateString(product.name, 25)}
+                price={product.price}
+              />
+            </View>
+          </TouchableOpacity>
         ))}
         {/* Add a clone of the first card to enable seamless looping */}
       </Animated.ScrollView>

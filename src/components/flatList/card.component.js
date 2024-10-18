@@ -26,7 +26,6 @@ const Envio = styled.Text`
   color: ${(props) => props.theme.colors.ui.success};
 `;
 const CardItem = ({ item }) => {
-  console.log(item);
   return (
     <Card style={styles.card}>
       <View style={styles.content}>

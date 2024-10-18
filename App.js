@@ -1,14 +1,4 @@
-import {
-  View,
-  StatusBar,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Dimensions,
-  statusBarStyle,
-  statusBarTransition,
-  ScrollView,
-} from "react-native";
+import { View, StatusBar, statusBarTransition } from "react-native";
 
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
@@ -23,11 +13,8 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 
-import { useEffect, useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { useState } from "react";
+
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { ProductsRandomContextProvider } from "./src/services/productRandom/productsRandom.context";
 export default function App() {
