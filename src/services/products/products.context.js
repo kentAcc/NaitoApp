@@ -22,19 +22,20 @@ export const ProductsContextProvider = ({ children }) => {
     setKeyword(searchKeyword);
   };
   useEffect(() => {
+    /*
     if (keyword.length < 3) {
       setIsLoading(false);
       return;
     }
-
+*/
     productsRequest(keyword.toLowerCase())
       .then((result) => {
-        setIsLoading(false);
         setProducts(result);
+        setIsLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false);
         setError(err);
+        setIsLoading(false);
       });
   }, [keyword]);
 

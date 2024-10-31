@@ -50,10 +50,12 @@ const ImageSlider = ({ props }) => {
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
       >
-        {productsB.map((product, index) => (
-          <TouchableOpacity onPress={() => actionOnRow(product)}>
+        {productsB.map((product) => (
+          <TouchableOpacity
+            onPress={() => actionOnRow(product)}
+            key={product.id}
+          >
             <View
-              key={index}
               style={{
                 width: cardWidth,
                 flexDirection: "row",

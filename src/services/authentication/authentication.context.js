@@ -1,8 +1,9 @@
 import React, { useState, createContext, useEffect } from "react";
-import LoginRequest, { Register } from "./authentication.service";
+import LoginRequest, { Register, NoRegister } from "./authentication.service";
 export const AuthenticationContext = createContext();
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
+
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
@@ -28,7 +29,13 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
-  const register = async ({ email, password, repeatedPassword }) => {
+  const register = async ({
+    email,
+    password,
+    repeatedPassword,
+    address,
+    name,
+  }) => {
     setError("");
     setIsLoading(true);
 
@@ -36,7 +43,30 @@ export const AuthenticationContextProvider = ({ children }) => {
       setIsLoading(false);
       return setError("password does not match");
     }
-    await Register(email, password, repeatedPassword)
+    await Register(email, password, repeatedPassword, address, name)
+      .then((user) => {
+        setUser(user);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setError(e.message);
+        setIsLoading(false);
+      });
+  };
+
+  const OnNoRegister = async ({
+    telefono,
+    cp,
+    estado,
+    ciudad,
+    colonia,
+    cart,
+    total,
+  }) => {
+    setIsLoading(true);
+    setError("");
+
+    await NoRegister(telefono, cp, estado, ciudad, colonia, cart, total)
       .then((user) => {
         setUser(user);
         setIsLoading(false);
@@ -50,7 +80,6 @@ export const AuthenticationContextProvider = ({ children }) => {
     await signOut(auth);
     setUser(null);
     setIsAuthenticated(false);
- 
   };
   return (
     <AuthenticationContext.Provider
@@ -62,6 +91,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         onLogin: getLogin,
         onRegister: register,
         onLogout: logout,
+        OnNoRegister: NoRegister,
       }}
     >
       {children}

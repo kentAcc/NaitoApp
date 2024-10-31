@@ -9,7 +9,73 @@
     ],
     "rating": 1,
     "promocion": true,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1,
+    "detail": `
+    🔌☀️CONECTATE AL SOL Y AHORRA ❌💸
+    📦 KIT 3⃣ LÁMPARAS LED – 100% SOLAR
+    🔥 $999 🔥
+    🔰 NUEVO MODELO
+    🚚 ENVÍO GRATIS
+    🛡️ GARANTÍA / PRUÉBALAS AL MOMENTO
+    🤝 PAGA AL RECIBIR
+    `,
+    "largedetail": `
+  👉Beneficios
+
+  ▶️ Ahorra energía, ofreciendo excelente iluminación donde es requerida
+
+  ▶️Alto brillo y bajo consumo
+
+  ▶️Alta resistencia a climas extremos como sol y lluvia
+
+  ▶️LED de alta calidad y duración
+
+  ▶️No genera contaminación en aire, radiación térmica u otro tipo.
+
+  🔰 Aplicaciones
+  Jardín, garaje, fachada, azotea, patio, pasillo, entrada, etc.
+
+  ✅Especificaciones:
+
+  🟦Nombre del producto: Lámpara LED Solar Sensor con detección de movimiento PIR de pared lámpara de jardín al aire libre impermeable
+
+  🟦Nombre: luz de pared de inducción de doble cabeza dividida Solar
+
+  🟦Material: plástico ABS
+
+  🟦Interruptor: Encendido/apagado y selección de modo
+
+  🟦Tablero de energía: polisilicio de alta calidad, 5,5 V
+
+  🟦Batería: batería recargable de litio 3,7 V 2400mAh
+
+  🟦Función: detección de movimiento humano
+
+  🟦Método de instalación: perforar agujeros y colgar paredes
+
+  🟦Tres funciones: luces para caminar apagadas, personas que caminan ligeramente brillantes, el cielo se enciende automáticamente.
+
+  ▶ 278 LED COB
+
+  ▶Distancia de inducción: 3-5M
+  Tiempo de carga: 4-6H
+
+  ▶Tiempo de iluminación: 8-12H
+  Rango de iluminación: 25 metros cuadrados
+
+  ▶Material: ABS
+
+  ▶ Inducción: La gente que camina se apaga, la gente que camina ligeramente brillante, siempre brillante
+
+  ▶Resistente al agua: IP65
+
+  📦 Incluye:
+
+  ☑️ Lámpara Solar 360° X3
+
+  ☑️ Tornillos y taquetes X3
+    `
   },
   {
     "id": 2,
@@ -21,7 +87,8 @@
     ],
     "rating": 2,
     "promocion": true,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1
   },
   {
     "id": 3,
@@ -33,7 +100,8 @@
     ],
     "rating": 2,
     "promocion": true,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1
   },
   {
     "id": 4,
@@ -45,7 +113,8 @@
     ],
     "rating": 2,
     "promocion": true,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1
   },
   {
     "id": 5,
@@ -56,7 +125,8 @@
       "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-8.28.54-PM.jpeg"
     ],
     "rating": 3,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1
   },
   {
     "id": 6,
@@ -68,7 +138,8 @@
       "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-8.28.54-PM.jpeg"
     ],
     "rating": 2,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1
   },
   {
     "id": 7,
@@ -92,7 +163,8 @@
     ],
     "rating": 2,
     "promocion": true,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1
   },
   {
     "id": 9,
@@ -104,7 +176,8 @@
     ],
     "rating": 2,
     "promocion": true,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1
   },
   {
     "id": 10,
@@ -126,7 +199,8 @@
       "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-8.28.54-PM.jpeg"
     ],
     "rating": 2,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 1
   },
   {
     "id": 12,
@@ -137,6 +211,7 @@
       "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-8.28.54-PM.jpeg"
     ],
     "rating": 2,
-    "price": 12.5
+    "price": 12.5,
+    "stock": 11
   }
 ]

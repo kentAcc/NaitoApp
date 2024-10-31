@@ -14,6 +14,7 @@ export const colors = {
     sliderName: "#b0b0b0",
     error: "#D0421B",
     success: "#138000",
+    merclib: "#3483FA",
   },
   bg: {
     primary: "#FFFFFF",

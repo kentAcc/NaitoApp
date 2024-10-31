@@ -35,7 +35,6 @@ export const ProductsScreen = (props) => {
 
   return (
     <>
-      <SafeAreaView style={styles.container}></SafeAreaView>
       <SafeAreaProvider style={{ paddingLeft: 2, paddingRight: 2 }}>
         {isLoading && (
           <View style={{ position: "absolute", top: "50%", left: "50%" }}>

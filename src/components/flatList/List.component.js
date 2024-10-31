@@ -44,7 +44,7 @@ export const ListComponent = ({ props }) => {
               }}
             >
               <TouchableOpacity onPress={() => actionOnRow(item)}>
-                <CardItem item={item}></CardItem>
+                <CardItem item={item} key={item.id}></CardItem>
               </TouchableOpacity>
               <Divider></Divider>
             </View>
@@ -55,9 +55,9 @@ export const ListComponent = ({ props }) => {
         style={{
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          marginTop: 10,
-          marginLeft: 10,
-          marginRight: 10,
+          marginTop: "10",
+          marginLeft: "10",
+          marginRight: "10",
         }}
       ></View>
     </>

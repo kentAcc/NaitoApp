@@ -1,25 +1,22 @@
 import react, { useContext, useState, useEffect } from "react";
-import FastImage from "react-native-fast-image";
-import { SafeArea } from "../utility/safe-area.component";
-import {
-  Text,
-  Platform,
-  Dimensions,
-  View,
-  Image,
-  TouchableHighlight,
-  StyleSheet,
-  BackHandler,
-} from "react-native";
-import { Avatar, Button, Card, TextInput } from "react-native-paper";
+
+import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Button, Card, TextInput } from "react-native-paper";
 import { CartContext } from "../../services/cart/cart.context";
 import { SliderBox } from "react-native-image-slider-box";
 import styled from "styled-components/native";
 
 export const Detail = ({ route, navigation }) => {
-  const [text, setText] = useState("");
-
-  const { photos, quantity, name, id, price } = route.params;
+  const {
+    photos,
+    quantity,
+    name,
+    id,
+    price,
+    stock,
+    detail,
+    largedetail,
+  } = route.params;
 
   const { addCart, setCart } = useContext(CartContext);
 
@@ -46,9 +43,33 @@ export const Detail = ({ route, navigation }) => {
   const Pricetext = styled.Text`
     font-size: ${(props) => props.theme.fontSizes.h3};
   `;
+  const TextoSaber = styled.Text`
+    font-size: ${(props) => props.theme.fontSizes.body};
+  `;
+  const ViewSaber = styled.ScrollView`
+    margin-top: 15px;
+    margin-left: 10px;
+  `;
+
+  const TextInputP = styled(TextInput)`
+    margin-bottom: 5;
+    margin-left: 10;
+    margin-right: 10;
+    margin-top: 10;
+    border-color: red;
+  `;
+
+  TextInput;
   return (
     <>
-      <Card style={{ borderRadius: 1, marginTop: 0 }}>
+      <Card
+        style={{
+          borderRadius: 1,
+          marginTop: 0,
+          elevation: 0,
+          shadowColor: "white",
+        }}
+      >
         <Text
           variant="labelSmall"
           style={{
@@ -101,7 +122,7 @@ export const Detail = ({ route, navigation }) => {
           }}
           ImageComponentStyle={{
             borderRadius: 1,
-            height: 320,
+            height: 250,
             width: 300,
             marginTop: 5,
             objectFit: "cover",
@@ -114,17 +135,11 @@ export const Detail = ({ route, navigation }) => {
         <Card.Actions></Card.Actions>
       </Card>
 
-      <TextInput
-        style={{
-          backgroundColor: "#f1efee",
-          marginBottom: 5,
-          marginLeft: 10,
-          marginRight: 10,
-          marginTop: 10,
-        }}
-        label="Cantidad"
-        maxLength={2}
+      <TextInputP
         defaultValue={newquantity}
+        maxLength={2}
+        mode="outlined"
+        label="Cantidad"
         keyboardType="numeric"
         value={newquantity}
         onChangeText={(text) => {
@@ -132,9 +147,12 @@ export const Detail = ({ route, navigation }) => {
         }}
       />
       <Button
-        style={!newquantity ? styles.silver : styles.orange}
+        style={
+          (!newquantity ? styles.silver : styles.orange,
+          { marginLeft: 10, marginRight: 10, borderRadius: 5 })
+        }
         disabled={!newquantity}
-        elevated={5}
+        elevated={2}
         mode="contained"
         onPress={() => {
           addCart({ id, photos, quantity: newquantity, name, price });
@@ -148,6 +166,13 @@ export const Detail = ({ route, navigation }) => {
       >
         Agregar a carrito
       </Button>
+
+      <ViewSaber>
+        <TextoSaber>Lo que debes saber del producto</TextoSaber>
+        <TextoSaber>{detail}</TextoSaber>
+        <TextoSaber>Detalle</TextoSaber>
+        <TextoSaber>{largedetail}</TextoSaber>
+      </ViewSaber>
     </>
   );
 };
@@ -161,7 +186,7 @@ const styles = StyleSheet.create({
   content1: {
     width: "100%",
     height: 50,
-    marginBottom: 10,
+    marginBottom: "10px",
     backgroundColor: "#000",
     justifyContent: "center",
     alignItems: "center",
@@ -179,7 +204,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     height: 15,
     marginTop: -25,
-    marginBottom: 10,
+    marginBottom: "px",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
@@ -219,6 +244,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
-  orange: { backgroundColor: "#D84B11" },
+  orange: { backgroundColor: "#3483FA" },
   silver: { backgroundColor: "silver" },
 });

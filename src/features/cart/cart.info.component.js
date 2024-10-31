@@ -1,68 +1,19 @@
-import React, {
-  useState,
-  useContext,
-  useMemo,
-  useCallback,
-  useRef,
-} from "react";
-import { SafeArea } from "../../components/utility/safe-area.component";
+import React, { useContext, useCallback, useRef, useMemo } from "react";
 
-import { Avatar, Button as ButtonA, Text } from "react-native-paper";
-import styled from "styled-components/native";
 import { CartContext } from "../../services/cart/cart.context";
-import {
-  Image,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
+import CartEmpyComponent from "./CartEmpy.Component";
+import { Divider } from "react-native-paper";
+import { ButtonSheetComponent } from "./ButtonSheet.component";
+import ItemCartComponent from "./ItemCart.component";
 
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-
-import { SkiaShadow } from "react-native-skia-shadow";
 export const CartInfoComponent = (props) => {
+  const sheetRef = useRef(null);
+  const snapPoints = useMemo(() => ["100%"]);
+
   const handleSheetChanges = useCallback((index: number) => {
     if (index == -1) props.navigation.goBack(null);
   }, []);
-  const bottomSheetModalRef = useRef(null);
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-  const Pricetext = styled.Text`
-    font-size: ${(props) => props.theme.fontSizes.h5};
-  `;
-  const Envios = styled.Text`
-    font-size: ${(props) => props.theme.fontSizes.title};
-  `;
-
-  const { cart, setCart, count } = useContext(CartContext);
-
-  const [isVisible, setIsVisible] = useState(true);
-  const list = [
-    { title: "List Item 1" },
-    { title: "List Item 2" },
-    {
-      title: "Cancel",
-      containerStyle: { backgroundColor: "red" },
-      titleStyle: { color: "white" },
-      onPress: () => setIsVisible(false),
-    },
-  ];
-  const sheetRef = useRef(null);
-
-  // variables
-  const data = useMemo(
-    () =>
-      Array(50)
-        .fill(0)
-        .map((_, index) => `index-${index}`),
-    []
-  );
-  const snapPoints = useMemo(() => ["100%"], []);
-
-  // callbacks
   const handleSheetChange = useCallback((index) => {}, []);
   const handleSnapPress = useCallback((index) => {
     sheetRef.current?.snapToIndex(index);
@@ -70,191 +21,45 @@ export const CartInfoComponent = (props) => {
   const handleClosePress = useCallback(() => {
     sheetRef.current?.close();
   }, []);
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const { cart, count, total } = useContext(CartContext);
 
-  const renderItem = useCallback(
-    (item) => (
-      <View key={item} style={styles.itemContainer}>
-        <Text>{item}</Text>
-      </View>
-    ),
-    []
-  );
   return (
     <>
       <ScrollView style={{}}>
-        <View
-          style={{
-            borderRadius: 5,
-            backgroundColor: "#fffff",
-            margin: 15,
-            padding: 2,
-          }}
-        >
-          {cart.map((item, index) => (
-            <View
-              key={item.id}
-              style={
-                index === cart.length - 1
-                  ? styles.contentContainersh
-                  : styles.borderB
-              }
-            >
-              <Image
-                source={{ uri: `${item.photos[0]}` }}
-                resizeMode={"cover"}
-                style={{ width: 60, height: 60 }}
-              ></Image>
-              <View style={{ marginLeft: 10, paddingTop: 0, width: "100%" }}>
-                <Text
-                  style={{
-                    textTransform: "capitalize",
-                  }}
-                >
-                  {item.name}
-                </Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    console.log("button press");
-                  }}
-                >
-                  <Text
-                    style={{
-                      textAlign: "left",
-                      color: "blue",
-                      marginTop: 10,
-                      marginBottom: 10,
-                    }}
-                  >
-                    eliminar
-                  </Text>
-                </TouchableOpacity>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    width: "80%",
-                    justifyContent: "space-between",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <Text
-                    style={{
-                      textAlignVertical: "center",
-                    }}
-                  >
-                    {item.quantity} Unidad(es)
-                  </Text>
+        {count == 0 && <CartEmpyComponent></CartEmpyComponent>}
+        {count > 0 && (
+          <View
+            style={{
+              borderRadius: 10,
+              backgroundColor: "white",
+              margin: 15,
+              padding: 4,
+            }}
+          >
+            <Text style={{ margin: 10 }}>Productos</Text>
+            <Divider />
 
-                  <Pricetext>
-                    ${Number(item.price) * Number(item.quantity)}
-                  </Pricetext>
-                </View>
-              </View>
-            </View>
-          ))}
-        </View>
-      </ScrollView>
-      <SkiaShadow blur={10} dx={30} dy={-5} borderRadius={10} color="silver">
-        <GestureHandlerRootView style={{}} elevation={5}>
-          <View style={styles.container}>
-            <BottomSheet
-              ref={sheetRef}
-              index={0}
-              elevation={5}
-              snapPoints={snapPoints}
-              onChange={handleSheetChange}
-            >
-              <BottomSheetScrollView
-                elevation={5}
-                contentContainerStyle={styles.contentContainer}
-              >
-                <View
-                  style={{
-                    flexDirection: "column",
-                    alignContent: "space-between",
-                    flex: 1,
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <View
-                    style={[
-                      {
-                        flexDirection: "row",
-                        alignItems: "center",
-                        paddingLeft: 15,
-                        paddingRight: 15,
-                      },
-                    ]}
-                  >
-                    <View style={[{ flex: 1, flexDirection: "row" }]}>
-                      <Text>Productos({count})</Text>
-                    </View>
-                    <View
-                      style={[
-                        { justifyContent: "space-evenly", marginVertical: 10 },
-                      ]}
-                    >
-                      <Text>
-                        ${cart.reduce((sum, current) => sum + current.price, 0)}
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={[
-                      {
-                        flexDirection: "row",
-                        alignItems: "center",
-                        paddingLeft: 15,
-                        paddingRight: 15,
-                      },
-                    ]}
-                  >
-                    <View style={[{ flex: 1, flexDirection: "row" }]}>
-                      <Text>Envío</Text>
-                    </View>
-                    <View
-                      style={[
-                        { justifyContent: "space-evenly", marginVertical: 10 },
-                      ]}
-                    >
-                      <Text style={{ color: "green" }}>¡Gratis!</Text>
-                    </View>
-                  </View>
-                </View>
-              </BottomSheetScrollView>
-            </BottomSheet>
+            {cart.map((item, index) => (
+              <ItemCartComponent
+                key={item.id}
+                item={item}
+                index={index}
+                length={count}
+              ></ItemCartComponent>
+            ))}
           </View>
-        </GestureHandlerRootView>
-      </SkiaShadow>
+        )}
+      </ScrollView>
+
+      <ButtonSheetComponent
+        cart={cart}
+        count={count}
+        navigation={props}
+        total={total}
+      ></ButtonSheetComponent>
     </>
   );
 };
-const styles = StyleSheet.create({
-  contentContainersh: {
-    flexDirection: "row",
-    padding: 5,
-    borderColor: "silver",
-    backgroundColor: "#ffff",
-  },
-  borderB: {
-    flexDirection: "row",
-    padding: 5,
-    borderColor: "silver",
-    backgroundColor: "#ffff",
-    borderColor: "silver",
-    borderBottomWidth: 1,
-  },
-
-  container: {
-    flex: 1,
-    paddingTop: 200,
-    elevation: 5,
-  },
-  contentContainer: {
-    backgroundColor: "white",
-  },
-  itemContainer: {
-    padding: 6,
-    margin: 6,
-    backgroundColor: "#eee",
-  },
-});

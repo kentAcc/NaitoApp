@@ -28,11 +28,6 @@ const SpacerView = styled.View`
 
 export const Spacer = ({ position, size, children }) => {
   const theme = useTheme();
-  const variant = getVariant(position, size, theme);
+  const variant = getVariant((position = "top"), (size = "small"), theme);
   return <SpacerView variant={variant}>{children}</SpacerView>;
-};
-
-Spacer.defaultProps = {
-  position: "top",
-  size: "small",
 };

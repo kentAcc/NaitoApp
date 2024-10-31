@@ -20,11 +20,12 @@ import {
   StyleSheet,
   BackHandler,
 } from "react-native";
-import { Divider, useTheme, Button } from "@rneui/themed";
+import { useTheme, Button } from "@rneui/themed";
 import styled from "styled-components/native";
 import { useIsFocused } from "@react-navigation/native";
 import SafeAreaView from "react-native-safe-area-view";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
 
 export const SheetScreen = (property) => {
   const Pricetext = styled.Text`
@@ -64,7 +65,7 @@ export const SheetScreen = (property) => {
                 onPress={() => {
                   bottomSheetModalRef.current?.close();
                 }}
-                title="x"
+                title="><"
                 buttonStyle={{
                   backgroundColor: "transparent",
                   borderRadius: 3,
@@ -72,13 +73,14 @@ export const SheetScreen = (property) => {
                   paddingBottom: 0,
                   marginBottom: 0,
                 }}
-                containerStyle={{}}
                 titleStyle={{
                   marginHorizontal: 0,
                   color: "silver",
                   fontSize: 23,
                 }}
-              />
+              >
+                <Ionicons name="close" color="red" size={25} />
+              </Button>
             </View>
             <View
               style={{

@@ -37,7 +37,11 @@ export const Title = styled(Text)`
   font-size: 30px;
   background-color: "red";
 `;
-
+export const SubTitle = styled(Text)`
+  font-size: ${(props) => props.theme.fontSizes.title};
+  background-color: "red";
+  margin-bottom: 15px;
+`;
 export const ErrorContainer = styled.View`
   max-width: 300px;
   align-items: center;

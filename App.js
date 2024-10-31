@@ -17,6 +17,7 @@ import { useState } from "react";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { ProductsRandomContextProvider } from "./src/services/productRandom/productsRandom.context";
+
 export default function App() {
   const [hidden, setHidden] = useState(false);
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });

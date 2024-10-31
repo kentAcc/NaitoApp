@@ -20,7 +20,7 @@ const TAB_ICON = {
   Carrito: "cart-outline",
   Settings: "settings",
 };
-
+  
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
   const { count } = useContext(CartContext);

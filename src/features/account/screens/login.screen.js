@@ -99,6 +99,7 @@ export const LoginScreen = ({ navigation }) => {
               icon="lock-open-outline"
               mode="contained"
               onPress={() => navigation.navigate("Register")}
+              style={{ backgroundColor: "green" }}
             >
               Register
             </AuthButton>

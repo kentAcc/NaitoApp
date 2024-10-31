@@ -16,12 +16,17 @@ export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
+  const [SetName, name] = useState("");
+  const [address, SetAddress] = useState("");
+  const [telefono, SetTelefono] = useState("");
+
+  SetTelefono;
   const { onRegister, error, isLoading } = useContext(AuthenticationContext);
 
   const handleLogin = async () => {
     try {
-      await onRegister({ email, password, repeatedPassword });
- 
+      await onRegister({ email, password, repeatedPassword, address, name });
+
       // Navigate to the next screen or perform further actions
     } catch (e) {
       //setError(e.message);
@@ -31,7 +36,7 @@ export const RegisterScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
-      <Title>Meals To Go</Title>
+      <Title>Datos de envío</Title>
       <AccountContainer>
         <AuthInput
           label="E-mail"
@@ -59,6 +64,30 @@ export const RegisterScreen = ({ navigation }) => {
             secureTextEntry
             autoCapitalize="none"
             onChangeText={(p) => setRepeatedPassword(p)}
+          />
+        </Spacer>
+        <Spacer size="large">
+          <AuthInput
+            label="Nombre Completo"
+            value={name}
+            autoCapitalize="none"
+            onChangeText={(p) => SetName(p)}
+          />
+        </Spacer>
+        <Spacer size="large">
+          <AuthInput
+            label="Dirección"
+            value={address}
+            autoCapitalize="none"
+            onChangeText={(p) => SetAddress(p)}
+          />
+        </Spacer>
+        <Spacer size="large">
+          <AuthInput
+            label="Telefono"
+            value={telefono}
+            autoCapitalize="none"
+            onChangeText={(p) => SetTelefono(p)}
           />
         </Spacer>
         {error && (

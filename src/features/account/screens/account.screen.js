@@ -72,6 +72,7 @@ export const AccountScreen = ({ navigation }) => {
             icon="lock-open-outline"
             mode="contained"
             onPress={handleLogOut}
+            style={{ backgroundColor: "red" }}
           >
             Log out
           </AuthButton>
@@ -84,15 +85,26 @@ export const AccountScreen = ({ navigation }) => {
             mode="contained"
             onPress={() => navigation.navigate("Login")}
           >
-            Login
+            Iniciar sessión
           </AuthButton>
           <Spacer size="large">
             <AuthButton
               icon="email"
               mode="contained"
-              onPress={() => navigation.navigate("Register")}
+              onPress={() => navigation.navigate("NoRegister")}
+              style={{ backgroundColor: "green" }}
             >
-              Register
+              Registrarse
+            </AuthButton>
+          </Spacer>
+          <Spacer size="large">
+            <AuthButton
+              icon="baby-face-outline"
+              mode="contained"
+              onPress={() => navigation.navigate("Register")}
+              style={{ backgroundColor: "#D0421B" }}
+            >
+              Continuar como invitado
             </AuthButton>
           </Spacer>
         </AccountContainer>
