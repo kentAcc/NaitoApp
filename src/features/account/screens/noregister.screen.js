@@ -30,46 +30,21 @@ export const NoRegisterScreen = ({ navigation }) => {
   const [colonia, setColonia] = useState("asd");
   const [email, SetEmail] = useState("asd@");
   const [cp, SetCp] = useState("asd");
-  const [telefono, setTelefono] = useState("asd");
+  const [telefono, setTelefono] = useState("5563392403");
   const [estado, SetEstado] = useState("asd");
   const [nombre, setNombre] = useState("asd");
   const [entrecalles, setEntreCalles] = useState("asd");
   const { error, isLoading, OnNoRegister } = useContext(AuthenticationContext);
+  const { cleanCart } = useContext(CartContext);
   const { cart, total, count } = useContext(CartContext);
   const hasError = () => {
     if (!telefono || !ciudad || !email.includes("@")) return true;
     else {
-      console.log("no hay erroree");
       return false;
     }
   };
 
   async function hola() {
-    /*
-    console.log("gola");
-    const token =
-      "EAAMj2SZA3nHcBO3ASMIpdNR6ZAdBXBIJ3h8TKRoX1vEaW4nbZASgkP4KClgZBEOtZAl5XC4BZBnnUVWww5JjAfaM3EZCIvAJUXiX1UZBGko1xMgWDsaqhvvzkhjZBxMJN1f8rfZCZBVJHNZBsOCbZBekpYUNnknIc0AiHpsTZBRHHyJZBSv74nZCpnENPAyZBf058OUffRqXRBEEZAnZAWg5zoOtLrzIBDskbsDnfAZD";
-
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    const bodyParameters = {
-      messaging_product: "whatsapp",
-      to: "525564392403",
-      type: "template",
-      template: { name: "hello_world", language: { code: "en_US" } },
-    };
-    axios
-      .post(
-        "https://graph.facebook.com/v20.0/417958594741941/messages",
-        bodyParameters,
-        config
-      )
-      .then(console.log)
-      .catch(console.log);
-*/
-    //console.log(cart, total);
     await OnNoRegister({
       telefono,
       cp,
@@ -78,9 +53,13 @@ export const NoRegisterScreen = ({ navigation }) => {
       colonia,
       cart,
       total,
-    }).then(() => onToggleSnackBar());
-    // Navigate to the next screen or perform further actions
-    //console.log(hasError);
+    }).then(() => {
+      cleanCart();
+      onToggleSnackBar();
+      setTimeout(() => {
+        navigation.navigate("products");
+      }, 3000);
+    });
   }
   return (
     <ScrollView>
@@ -207,7 +186,7 @@ export const NoRegisterScreen = ({ navigation }) => {
                   icon="email"
                   mode="contained"
                   onPress={hola}
-                  disabled={hasError()}
+                  disabled={hasError() || count < 1}
                 >
                   Confirmar
                 </AuthButton>
@@ -228,8 +207,9 @@ export const NoRegisterScreen = ({ navigation }) => {
           <Snackbar
             visible={visible}
             onDismiss={onDismissSnackBar}
+            wrapperStyle={{ top: 20 }}
             action={{
-              label: "Undo",
+              label: "Cerrar",
               onPress: () => {
                 // Do something
               },

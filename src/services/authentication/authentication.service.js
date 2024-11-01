@@ -54,6 +54,7 @@ export const NoRegister = async ({
   cart,
   total,
 }) => {
+  console.log(telefono, "teleon");
   const data = {
     telefono,
     cp,

@@ -26,7 +26,7 @@ export const ProductsNavigator = () => {
   return (
     <ProductsStack.Navigator screenOptions={createScreenOptions}>
       <ProductsStack.Screen
-        name=" products"
+        name="products"
         component={ProductsScreen}
       ></ProductsStack.Screen>
       <ProductsStack.Screen

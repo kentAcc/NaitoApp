@@ -18,13 +18,15 @@ import { Search } from "./search.component";
 import { ProductsContext } from "../../services/products/products.context";
 import ImageSlider from "../Slider/ImageSlider.component";
 import { ListComponent } from "../flatList/List.component";
-
+import App from "../../features/account/screens/drawer.screen";
+import { LinearGradient } from "expo-linear-gradient";
 const width = Dimensions.get("screen").width;
 export const ProductsScreen = (props) => {
   const { isLoading, error, products } = useContext(ProductsContext);
   const [hidden, setHidden] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
 
+  const [active, setActive] = useState("");
   const actionOnRow = (item) => {
     const product = { ...item, quantity: 1 };
 
@@ -52,8 +54,13 @@ export const ProductsScreen = (props) => {
           showHideTransition={statusBarTransition}
           hidden={hidden}
         />
+        <LinearGradient
+          // Background Linear Gradient
+          colors={["rgba(237, 217, 1, 1)", "transparent"]}
+          style={styles.background}
+        />
         <Search />
-
+        <App></App>
         {(!products || products.length == 0) && (
           <>
             <ImageSlider props={props.navigation} />

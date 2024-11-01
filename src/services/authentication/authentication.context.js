@@ -63,10 +63,11 @@ export const AuthenticationContextProvider = ({ children }) => {
     cart,
     total,
   }) => {
+    console.log("onnoregister", telefono);
     setIsLoading(true);
     setError("");
 
-    await NoRegister(telefono, cp, estado, ciudad, colonia, cart, total)
+    await NoRegister({ telefono, cp, estado, ciudad, colonia, cart, total })
       .then((user) => {
         setUser(user);
         setIsLoading(false);
@@ -91,7 +92,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         onLogin: getLogin,
         onRegister: register,
         onLogout: logout,
-        OnNoRegister: NoRegister,
+        OnNoRegister: OnNoRegister,
       }}
     >
       {children}
