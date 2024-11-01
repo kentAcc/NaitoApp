@@ -53,13 +53,14 @@ export const CartInfoComponent = (props) => {
           </View>
         )}
       </ScrollView>
-
-      <ButtonSheetComponent
-        cart={cart}
-        count={count}
-        navigation={props}
-        total={total}
-      ></ButtonSheetComponent>
+      {count > 0 && (
+        <ButtonSheetComponent
+          cart={cart}
+          count={count}
+          navigation={props}
+          total={total}
+        ></ButtonSheetComponent>
+      )}
     </>
   );
 };

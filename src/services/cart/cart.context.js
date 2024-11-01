@@ -12,6 +12,7 @@ export const CartContextProvider = ({
   const [cart, setCart] = useState(() => []);
   const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const totalProducts = cart.reduce(
       (sum, current) => sum + Number(current.quantity),
@@ -27,9 +28,10 @@ export const CartContextProvider = ({
     );
     //setTotal(total);
     setCount(totalProducts);
-  }, [cart, id, quantity]);
+  }, [cart, id, quantity, isLoading]);
 
   const add = ({ id, photos, quantity, name, price }) => {
+    setIsLoading(true);
     const found = cart.find((item) => item.id == id);
     if (found) {
       var item = {
@@ -50,6 +52,7 @@ export const CartContextProvider = ({
         { id, quantity, photos, name, price, totalItem: totalItem },
       ]);
     }
+    setIsLoading(false);
   };
 
   const remove = (id) => {
@@ -69,6 +72,7 @@ export const CartContextProvider = ({
         count,
         total,
         cleanCart: removeAll,
+        isLoading,
       }}
     >
       {children}

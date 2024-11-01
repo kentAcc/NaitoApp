@@ -65,7 +65,6 @@ export const NoRegisterScreen = ({ navigation }) => {
     <ScrollView>
       <AccountBackground>
         <AccountCover />
-
         <AccountContainer>
           <Spacer size="small">
             <SubTitle>Captura los datos para el envío</SubTitle>

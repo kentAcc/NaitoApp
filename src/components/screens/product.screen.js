@@ -14,19 +14,17 @@ import {
 import { ProductInfoCard } from "../../features/products/product-info-card.component";
 import SafeAreaView from "react-native-safe-area-view";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Search } from "./search.component";
+
 import { ProductsContext } from "../../services/products/products.context";
 import ImageSlider from "../Slider/ImageSlider.component";
 import { ListComponent } from "../flatList/List.component";
-import App from "../../features/account/screens/drawer.screen";
+
 import { LinearGradient } from "expo-linear-gradient";
-const width = Dimensions.get("screen").width;
+
 export const ProductsScreen = (props) => {
   const { isLoading, error, products } = useContext(ProductsContext);
   const [hidden, setHidden] = useState(false);
-  const [isToggled, setIsToggled] = useState(false);
 
-  const [active, setActive] = useState("");
   const actionOnRow = (item) => {
     const product = { ...item, quantity: 1 };
 
@@ -38,15 +36,6 @@ export const ProductsScreen = (props) => {
   return (
     <>
       <SafeAreaProvider style={{ paddingLeft: 2, paddingRight: 2 }}>
-        {isLoading && (
-          <View style={{ position: "absolute", top: "50%", left: "50%" }}>
-            <ActivityIndicator
-              size={50}
-              style={{ marginLeft: -25 }}
-              animating={true}
-            ></ActivityIndicator>
-          </View>
-        )}
         <StatusBar
           animated={true}
           backgroundColor="#EDD901"
@@ -59,8 +48,7 @@ export const ProductsScreen = (props) => {
           colors={["rgba(237, 217, 1, 1)", "transparent"]}
           style={styles.background}
         />
-        <Search />
-        <App></App>
+
         {(!products || products.length == 0) && (
           <>
             <ImageSlider props={props.navigation} />
@@ -88,6 +76,15 @@ export const ProductsScreen = (props) => {
               </View>
             )}
           />
+        )}
+        {isLoading && (
+          <View style={{ position: "absolute", top: "50%", left: "50%" }}>
+            <ActivityIndicator
+              size={50}
+              style={{ marginLeft: -25 }}
+              animating={true}
+            ></ActivityIndicator>
+          </View>
         )}
       </SafeAreaProvider>
     </>

@@ -22,12 +22,11 @@ export const ProductsContextProvider = ({ children }) => {
     setKeyword(searchKeyword);
   };
   useEffect(() => {
-    /*
-    if (keyword.length < 3) {
+    if (keyword.length == 0) {
       setIsLoading(false);
       return;
     }
-*/
+
     productsRequest(keyword.toLowerCase())
       .then((result) => {
         setProducts(result);
@@ -38,7 +37,6 @@ export const ProductsContextProvider = ({ children }) => {
         setIsLoading(false);
       });
   }, [keyword]);
-
   return (
     <ProductsContext.Provider
       value={{

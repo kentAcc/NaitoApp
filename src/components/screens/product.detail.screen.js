@@ -1,7 +1,7 @@
 import react, { useContext, useState, useEffect } from "react";
 
 import { Text, StyleSheet, View, ScrollView } from "react-native";
-import { Button, Card, TextInput } from "react-native-paper";
+import { Button, Card, TextInput, ActivityIndicator } from "react-native-paper";
 import { CartContext } from "../../services/cart/cart.context";
 import { SliderBox } from "react-native-image-slider-box";
 import styled from "styled-components/native";
@@ -18,24 +18,13 @@ export const Detail = ({ route, navigation }) => {
     largedetail,
   } = route.params;
 
-  const { addCart, setCart } = useContext(CartContext);
+  const { addCart, setCart, isLoading } = useContext(CartContext);
 
   const temp = photos.map((data, i) => {
     return data;
   });
 
   const [newquantity, setQuantity] = useState("1");
-  const [isVisible, setIsVisible] = useState(false);
-  const list = [
-    { title: "List Item 1" },
-    { title: "List Item 2" },
-    {
-      title: "Cancel",
-      containerStyle: { backgroundColor: "red" },
-      titleStyle: { color: "white" },
-      onPress: () => setIsVisible(false),
-    },
-  ];
 
   const currencyFormat = (num) => {
     return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -146,26 +135,36 @@ export const Detail = ({ route, navigation }) => {
           setQuantity(text);
         }}
       />
-      <Button
-        style={
-          (!newquantity ? styles.silver : styles.orange,
-          { marginLeft: 10, marginRight: 10, borderRadius: 5 })
-        }
-        disabled={!newquantity}
-        elevated={2}
-        mode="contained"
-        onPress={() => {
-          addCart({ id, photos, quantity: newquantity, name, price });
-          navigation.navigate("sheet", {
-            newquantity,
-            photos,
-            name,
-            price,
-          });
-        }}
-      >
-        Agregar a carrito
-      </Button>
+      {!isLoading ? (
+        <Button
+          style={
+            (!newquantity ? styles.silver : styles.orange,
+            { marginLeft: 10, marginRight: 10, borderRadius: 5 })
+          }
+          disabled={!newquantity || isLoading}
+          elevated={2}
+          mode="contained"
+          onPress={() => {
+            addCart({ id, photos, quantity: newquantity, name, price });
+            navigation.navigate("sheet", {
+              newquantity,
+              photos,
+              name,
+              price,
+            });
+          }}
+        >
+          Agregar a carrito
+        </Button>
+      ) : (
+        <View style={{ position: "absolute", top: "50%", left: "50%" }}>
+          <ActivityIndicator
+            size={50}
+            style={{ marginLeft: -25 }}
+            animating={true}
+          ></ActivityIndicator>
+        </View>
+      )}
 
       <ViewSaber>
         <TextoSaber>Lo que debes saber del producto</TextoSaber>

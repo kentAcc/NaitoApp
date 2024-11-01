@@ -6,8 +6,8 @@ import { ProductsContext } from "../../services/products/products.context";
 import { StyleSheet, Text, View } from "react-native";
 
 const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
   width: 100%;
+  background-color: "red";
 `;
 
 export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
@@ -19,15 +19,9 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
   }, [keyword]);
   return (
     <SearchContainer>
-      <LinearGradient
-        // Background Linear Gradient
-        colors={["rgba(237, 217, 1, 1)", "transparent"]}
-        style={styles.background}
-      />
-      <LinearGradient colors={["#EDD901", "#EDD901"]}> </LinearGradient>
       <Searchbar
         onIconPress={onFavouritesToggle}
-        placeholder="buscar en Naito"
+        placeholder="Buscar en Naito"
         value={searchKeyword}
         onSubmitEditing={() => {
           if (keyword !== searchKeyword) search(searchKeyword);
@@ -37,7 +31,8 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
         }}
         style={{
           height: 30,
-          width: 400,
+          width: 350,
+          marginLeft: 0,
         }}
         inputStyle={{
           minHeight: 0, // Add this

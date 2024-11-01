@@ -32,7 +32,7 @@ const Rating = styled.View`
   color: black;
 `;
 const Pricetext = styled.Text`
-  font-size: ${(props) => props.theme.fontSizes.title};
+  font-size: ${(props) => props.theme.fontSizes.body};
 `;
 const Envio = styled.View`
   font-size: ${(props) => props.theme.fontSizes.caption};

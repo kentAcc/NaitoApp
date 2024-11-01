@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ProductsScreen } from "../../components/screens/product.screen";
+
+import DrawerScreen from "./drawer.screen";
 import { Detail } from "../../components/screens/product.detail.screen";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { SheetScreen } from "../../components/screens/sheet.screen";
@@ -27,7 +29,7 @@ export const ProductsNavigator = () => {
     <ProductsStack.Navigator screenOptions={createScreenOptions}>
       <ProductsStack.Screen
         name="products"
-        component={ProductsScreen}
+        component={DrawerScreen}
       ></ProductsStack.Screen>
       <ProductsStack.Screen
         name="Detail"
