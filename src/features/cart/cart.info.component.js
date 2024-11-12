@@ -47,7 +47,7 @@ export const CartInfoComponent = (props) => {
                 key={item.id}
                 item={item}
                 index={index}
-                length={count}
+                length={cart.length}
               ></ItemCartComponent>
             ))}
           </View>

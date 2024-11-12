@@ -90,7 +90,7 @@ export const ButtonSheetComponent = ({ cart, count, navigation, total }) => {
                   mode="contained"
                   disabled={count < 1}
                   onPress={() => {
-                    navigation.navigation.navigate("Settings", {
+                    navigation.navigation.navigate("Cuenta", {
                       screen: "NoRegister",
                     });
                   }}

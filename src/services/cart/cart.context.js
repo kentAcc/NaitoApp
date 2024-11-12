@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useRef } from "react";
 
 export const CartContext = createContext();
 
@@ -12,7 +12,8 @@ export const CartContextProvider = ({
   const [cart, setCart] = useState(() => []);
   const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(0);
+
   useEffect(() => {
     const totalProducts = cart.reduce(
       (sum, current) => sum + Number(current.quantity),
@@ -26,7 +27,7 @@ export const CartContextProvider = ({
         0
       )
     );
-    //setTotal(total);
+
     setCount(totalProducts);
   }, [cart, id, quantity, isLoading]);
 
@@ -36,7 +37,7 @@ export const CartContextProvider = ({
     if (found) {
       var item = {
         id,
-        photos,
+        photos: photos[0],
         quantity: Number(found.quantity) + Number(quantity),
         name,
         price,
@@ -59,6 +60,7 @@ export const CartContextProvider = ({
     const carts = cart.filter((item) => item.id != id);
     setCart([...carts]);
   };
+
   const removeAll = () => {
     setCart([]);
   };
@@ -73,6 +75,7 @@ export const CartContextProvider = ({
         total,
         cleanCart: removeAll,
         isLoading,
+        setIsLoading: setIsLoading,
       }}
     >
       {children}

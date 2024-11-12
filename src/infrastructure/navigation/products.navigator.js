@@ -1,45 +1,28 @@
-import React, { useMemo } from "react";
+import React, { useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { ProductsScreen } from "../../components/screens/product.screen";
 
-import DrawerScreen from "./drawer.screen";
 import { Detail } from "../../components/screens/product.detail.screen";
-import { SafeArea } from "../../components/utility/safe-area.component";
+import { ProductsScreen } from "../../components/screens/product.screen";
 import { SheetScreen } from "../../components/screens/sheet.screen";
-import { Button } from "react-native";
+
 const ProductsStack = createStackNavigator();
 export const ProductsNavigator = () => {
   const createScreenOptions = ({ route }) => {
     return {
       headerShown: false,
-      tabBarIcon: ({ size, color }) => <Badge>3</Badge>,
-      tabBarOptions: () => {
-        activeTintColor: "tomato";
-        inactiveTintColor: "gray";
-      },
     };
   };
-  const DetailsScreen = ({ navigation }) => (
-    <SafeArea>
-      <Button onPress={() => navigation.goBack()} title="Dismiss" />
-    </SafeArea>
-  );
 
   return (
     <ProductsStack.Navigator screenOptions={createScreenOptions}>
       <ProductsStack.Screen
         name="products"
-        component={DrawerScreen}
+        component={ProductsScreen}
       ></ProductsStack.Screen>
       <ProductsStack.Screen
         name="Detail"
         component={Detail}
       ></ProductsStack.Screen>
-      <ProductsStack.Screen
-        name="carrito"
-        component={DetailsScreen}
-      ></ProductsStack.Screen>
-
       <ProductsStack.Screen
         options={{
           headerShown: false,

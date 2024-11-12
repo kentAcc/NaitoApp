@@ -25,27 +25,15 @@ export const Register = async (
         name,
         address,
       };
-
       setDoc(doc(db, "users", uid), data);
-      /*console.log(uid, "uid");
-      const ref = collection(db, "users");
-      console.log(ref, "ref");
-      ref.doc(db, uid);
-*/
-      /*.setDoc(data)
-        .then(() => {
-          //toast.show("Success!", { type: "success" });
-          //navigation.navigate("Login", { user: data });
-        })
-        .catch((error) => {
-          //toast.show(error.message, { type: "danger" });
-        });*/
     }
   );
 };
 export default LoginRequest;
 
 export const NoRegister = async ({
+  email,
+  nombre,
   telefono,
   cp,
   estado,
@@ -54,8 +42,10 @@ export const NoRegister = async ({
   cart,
   total,
 }) => {
-  console.log(telefono, "teleon");
+  const date = new Date().toLocaleString();
   const data = {
+    email,
+    nombre,
     telefono,
     cp,
     estado,
@@ -63,21 +53,8 @@ export const NoRegister = async ({
     colonia,
     cart,
     total,
+    fecha: date,
   };
 
   const docRef = await addDoc(collection(db, "cart"), { data });
-
-  /*console.log(uid, "uid");
-      const ref = collection(db, "users");
-      console.log(ref, "ref");
-      ref.doc(db, uid);
-*/
-  /*.setDoc(data)
-        .then(() => {
-          //toast.show("Success!", { type: "success" });
-          //navigation.navigate("Login", { user: data });
-        })
-        .catch((error) => {
-          //toast.show(error.message, { type: "danger" });
-        });*/
 };

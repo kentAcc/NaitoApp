@@ -31,7 +31,7 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
         }}
         style={{
           height: 30,
-          width: 350,
+          width: 300,
           marginLeft: 0,
         }}
         inputStyle={{

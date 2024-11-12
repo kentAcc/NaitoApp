@@ -17,15 +17,46 @@ export const Detail = ({ route, navigation }) => {
     detail,
     largedetail,
   } = route.params;
-
   const { addCart, setCart, isLoading } = useContext(CartContext);
+  const [disabledView, setDisabledView] = useState(false);
+  function hola() {
+    () => {
+      addCart({ id, photos, quantity: newquantity, name, price });
+    };
+    navigation.navigate("sheet", {
+      newquantity,
+      photos,
+      name,
+      price,
+    });
+  }
+  const handleClick = () => {
+    // Show an alert or perform your action
+
+    // Disable the button
+    setIsDisabled(true);
+    addCart({ id, photos, quantity: newquantity, name, price });
+    navigation.navigate("sheet", {
+      newquantity,
+      photos,
+      name,
+      price,
+    });
+
+    setTimeout(() => {
+      setIsDisabled(false);
+    }, 2000);
+  };
+  useEffect(() => {
+ 
+  }, [isDisabled]);
 
   const temp = photos.map((data, i) => {
     return data;
   });
 
   const [newquantity, setQuantity] = useState("1");
-
+  const [isDisabled, setIsDisabled] = useState(false);
   const currencyFormat = (num) => {
     return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   };
@@ -39,7 +70,6 @@ export const Detail = ({ route, navigation }) => {
     margin-top: 15px;
     margin-left: 10px;
   `;
-
   const TextInputP = styled(TextInput)`
     margin-bottom: 5;
     margin-left: 10;
@@ -135,27 +165,21 @@ export const Detail = ({ route, navigation }) => {
           setQuantity(text);
         }}
       />
-      {!isLoading ? (
-        <Button
-          style={
-            (!newquantity ? styles.silver : styles.orange,
-            { marginLeft: 10, marginRight: 10, borderRadius: 5 })
-          }
-          disabled={!newquantity || isLoading}
-          elevated={2}
-          mode="contained"
-          onPress={() => {
-            addCart({ id, photos, quantity: newquantity, name, price });
-            navigation.navigate("sheet", {
-              newquantity,
-              photos,
-              name,
-              price,
-            });
-          }}
-        >
-          Agregar a carrito
-        </Button>
+      {!disabledView ? (
+        <>
+          <Button
+            style={
+              (!newquantity ? styles.silver : styles.orange,
+              { marginLeft: 10, marginRight: 10, borderRadius: 5 })
+            }
+            disabled={isDisabled}
+            elevated={2}
+            mode="contained"
+            onPress={handleClick}
+          >
+            Agregar a carrito
+          </Button>
+        </>
       ) : (
         <View style={{ position: "absolute", top: "50%", left: "50%" }}>
           <ActivityIndicator

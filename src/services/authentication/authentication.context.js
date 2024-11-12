@@ -55,6 +55,8 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
 
   const OnNoRegister = async ({
+    email,
+    nombre,
     telefono,
     cp,
     estado,
@@ -63,11 +65,20 @@ export const AuthenticationContextProvider = ({ children }) => {
     cart,
     total,
   }) => {
-    console.log("onnoregister", telefono);
     setIsLoading(true);
     setError("");
 
-    await NoRegister({ telefono, cp, estado, ciudad, colonia, cart, total })
+    await NoRegister({
+      email,
+      nombre,
+      telefono,
+      cp,
+      estado,
+      ciudad,
+      colonia,
+      cart,
+      total,
+    })
       .then((user) => {
         setUser(user);
         setIsLoading(false);

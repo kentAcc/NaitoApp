@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Platform, StyleSheet, ScrollView, Linking, View } from "react-native";
+import { ScrollView } from "react-native";
 import {
   AccountBackground,
   AccountCover,
@@ -12,12 +12,7 @@ import {
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import {
-  ActivityIndicator,
-  HelperText,
-  Snackbar,
-  Button,
-} from "react-native-paper";
+import { ActivityIndicator, HelperText, Snackbar } from "react-native-paper";
 import { CartContext } from "../../../services/cart/cart.context";
 
 export const NoRegisterScreen = ({ navigation }) => {
@@ -35,8 +30,7 @@ export const NoRegisterScreen = ({ navigation }) => {
   const [nombre, setNombre] = useState("asd");
   const [entrecalles, setEntreCalles] = useState("asd");
   const { error, isLoading, OnNoRegister } = useContext(AuthenticationContext);
-  const { cleanCart } = useContext(CartContext);
-  const { cart, total, count } = useContext(CartContext);
+  const { cart, total, count, cleanCart } = useContext(CartContext);
   const hasError = () => {
     if (!telefono || !ciudad || !email.includes("@")) return true;
     else {
@@ -46,6 +40,8 @@ export const NoRegisterScreen = ({ navigation }) => {
 
   async function hola() {
     await OnNoRegister({
+      email,
+      nombre,
       telefono,
       cp,
       estado,
@@ -58,7 +54,7 @@ export const NoRegisterScreen = ({ navigation }) => {
       onToggleSnackBar();
       setTimeout(() => {
         navigation.navigate("products");
-      }, 3000);
+      }, 2000);
     });
   }
   return (

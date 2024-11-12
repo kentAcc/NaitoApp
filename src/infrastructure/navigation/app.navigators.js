@@ -3,8 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import { CartInfoComponent } from "../../features/cart/cart.info.component";
-
 import { ProductsNavigator } from "./products.navigator";
 import { AccountNavigator } from "./account.navigator";
 import { Badge } from "react-native-paper";
@@ -14,7 +12,7 @@ import { CartContext } from "../../../src/services/cart/cart.context";
 import { ProductsRandomContextProvider } from "../../../src/services/productRandom/productsRandom.context";
 import { BannerContextProvider } from "../../../src/services/banners/banner.context";
 import { ProductsContextProvider } from "../../../src/services/products/products.context";
-import App from "./drawer.screen";
+import DrawerScreen from "./drawer.screen";
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
@@ -25,7 +23,7 @@ const TAB_ICON = {
 
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
-  const { count } = useContext(CartContext);
+  const { count, isLoading } = useContext(CartContext);
   return {
     tabBarIcon: ({ size, color }) => (
       <>
@@ -51,35 +49,7 @@ export const AppNavigator = () => {
       <BannerContextProvider>
         <ProductsRandomContextProvider>
           <NavigationContainer>
-            <Tab.Navigator screenOptions={createScreenOptions}>
-              <Tab.Screen
-                name="Productos"
-                component={ProductsNavigator}
-                options={{ headerShown: false }}
-              />
-              <Tab.Screen
-                name="Carrito"
-                component={CartInfoComponent}
-                options={{
-                  headerShown: true,
-                  title: "Carrito de compras",
-                  headerStyle: {
-                    backgroundColor: "#EDD901",
-                  },
-                }}
-              />
-              <Tab.Screen
-                name="Settings"
-                component={AccountNavigator}
-                options={{
-                  headerShown: true,
-                  title: "Account",
-                  headerStyle: {
-                    backgroundColor: "#EDD901",
-                  },
-                }}
-              />
-            </Tab.Navigator>
+            <DrawerScreen></DrawerScreen>
           </NavigationContainer>
         </ProductsRandomContextProvider>
       </BannerContextProvider>

@@ -6,14 +6,8 @@ import { Divider } from "react-native-paper";
 const Pricetext = styled.Text`
   font-size: ${(props) => props.theme.fontSizes.h5};
 `;
-const Eliminar = styled.Text`
-  text-align: "left";
-  color: blue;
-  margin-top: 10;
-  margin-bottom: 10;
-`;
-const ItemCartComponent = ({ item, index, length }) => {
-  console.log(length, "length");
+
+const ItemPedidosComponent = ({ item, index, length }) => {
   const { removeCart } = useContext(CartContext);
   return (
     <>
@@ -35,9 +29,7 @@ const ItemCartComponent = ({ item, index, length }) => {
             onPress={() => {
               removeCart(item.id);
             }}
-          >
-            <Eliminar>eliminar</Eliminar>
-          </TouchableOpacity>
+          ></TouchableOpacity>
           <View
             style={{
               flexDirection: "row",
@@ -86,4 +78,4 @@ const styles = StyleSheet.create({
     backgroundColor: "#eee",
   },
 });
-export default ItemCartComponent;
+export default ItemPedidosComponent;

@@ -6,13 +6,10 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  Dimensions,
-  statusBarStyle,
   statusBarTransition,
-  ScrollView,
 } from "react-native";
 import { ProductInfoCard } from "../../features/products/product-info-card.component";
-import SafeAreaView from "react-native-safe-area-view";
+
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { ProductsContext } from "../../services/products/products.context";

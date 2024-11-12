@@ -6,7 +6,7 @@ import { theme } from "./src/infrastructure/theme";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Navigation } from "./src/infrastructure/navigation";
-
+import { PedidosContextProvider } from "./src/services/pedidos/pedidos.context";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -28,19 +28,21 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <GestureHandlerRootView>
-        <AuthenticationContextProvider>
+        <PedidosContextProvider>
           <CartContextProvider>
-            <StatusBar
-              animated={true}
-              backgroundColor="#EDD901"
-              barStyle={"dark-content"}
-              showHideTransition={statusBarTransition}
-              hidden={hidden}
-            />
+            <AuthenticationContextProvider>
+              <StatusBar
+                animated={true}
+                backgroundColor="#EDD901"
+                barStyle={"dark-content"}
+                showHideTransition={statusBarTransition}
+                hidden={hidden}
+              />
 
-            <Navigation />
+              <Navigation />
+            </AuthenticationContextProvider>
           </CartContextProvider>
-        </AuthenticationContextProvider>
+        </PedidosContextProvider>
       </GestureHandlerRootView>
     </ThemeProvider>
   );

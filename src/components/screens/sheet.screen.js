@@ -32,11 +32,11 @@ export const SheetScreen = (property) => {
     font-size: ${(props) => props.theme.fontSizes.title};
   `;
   const Envios = styled.Text`
-    font-size: ${(props) => props.theme.fontSizes.title};
+    font-size: ${(props) => props.theme.fontSizes.body};
   `;
   const isFocused = useIsFocused();
   const { theme } = useTheme();
-  const snapPoints = useMemo(() => ["25%"], ["50%"]);
+  const snapPoints = useMemo(() => ["26.5%"], ["50%"]);
   const bottomSheetModalRef = useRef(null);
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
@@ -110,8 +110,9 @@ export const SheetScreen = (property) => {
                       {property.route.params.name}
                       {"\n"}
                     </Text>
-                    <Text style={{ paddingTop: 15 }}>
+                    <Text style={{ paddingTop: 5, paddingBottom: 10 }}>
                       {property.route.params.newquantity} Unidad
+                      {"\n"}
                     </Text>
                   </Text>
                 </View>
@@ -119,7 +120,7 @@ export const SheetScreen = (property) => {
                   style={{
                     flex: 1,
                     borderColor: "silver",
-                    marginTop: 15,
+                    marginTop: 5,
                     borderTopWidth: 1,
                     padding: 10,
                   }}
@@ -148,6 +149,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "alignItems",
     flexDirection: "row",
+    marginBottom: 10,
+
+    marginBottom: 10,
   },
   fixToText: {
     flexDirection: "row",
