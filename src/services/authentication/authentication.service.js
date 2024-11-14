@@ -42,8 +42,9 @@ export const NoRegister = async ({
   cart,
   total,
 }) => {
-  const date = new Date().toLocaleString();
-  const data = {
+  const date = new Date().toLocaleDateString("es-mx");
+
+  const docRef = await addDoc(collection(db, "cart"), {
     email,
     nombre,
     telefono,
@@ -54,7 +55,5 @@ export const NoRegister = async ({
     cart,
     total,
     fecha: date,
-  };
-
-  const docRef = await addDoc(collection(db, "cart"), { data });
+  });
 };

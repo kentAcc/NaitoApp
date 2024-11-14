@@ -6,13 +6,13 @@ export const PedidosContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [pedidos, setPedidos] = useState(() => []);
   useEffect(() => {
-    getPedidosbyDate();
+    //getPedidosbyDate();
   }, []);
 
-  const getPedidosbyDate = async () => {
+  const getPedidosbyDate = async (date) => {
     setIsLoading(true);
     try {
-      await PedidosToday("cart").then((pedidos) => {
+      await PedidosToday("cart", date).then((pedidos) => {
         setPedidos(pedidos);
         setIsLoading(false);
       });
@@ -30,6 +30,7 @@ export const PedidosContextProvider = ({ children }) => {
         isLoading,
         setIsLoading: setIsLoading,
         pedidos,
+        getPedidos: getPedidosbyDate,
       }}
     >
       {children}

@@ -13,7 +13,6 @@ const Eliminar = styled.Text`
   margin-bottom: 10;
 `;
 const ItemCartComponent = ({ item, index, length }) => {
-  console.log(length, "length");
   const { removeCart } = useContext(CartContext);
   return (
     <>

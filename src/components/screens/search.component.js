@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
-import { LinearGradient } from "expo-linear-gradient";
+
 import { ProductsContext } from "../../services/products/products.context";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -36,23 +36,11 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
         }}
         inputStyle={{
           minHeight: 0, // Add this
+          alignItems: "center",
+          alignContent: "center",
+          paddingBottom: 4,
         }}
       />
     </SearchContainer>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "orange",
-  },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 300,
-  },
-});

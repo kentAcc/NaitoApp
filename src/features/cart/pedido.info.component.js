@@ -8,7 +8,6 @@ import ItemPedidosComponent from "./ItemPedidos.component";
 
 export const PedidoInfoComponent = ({ route }) => {
   const { item } = route.params;
-  console.log(item.data.cart, "item");
 
   return (
     <>
