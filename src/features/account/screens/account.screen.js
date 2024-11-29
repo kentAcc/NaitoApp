@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { Spacer } from "../../../components/spacer/spacer.component";
 import {
   AccountBackground,
@@ -11,7 +10,7 @@ import {
 } from "../component/account.style";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { View } from "react-native";
-import { Text, Button } from "react-native-paper";
+import { Text } from "react-native-paper";
 import { auth } from "../../../../firebaseConfig";
 import LottieView from "lottie-react-native";
 export const AccountScreen = ({ navigation }) => {
@@ -55,11 +54,12 @@ export const AccountScreen = ({ navigation }) => {
 
       <Title
         style={{
-          width: "auto",
+          width: "100%",
           justifyContent: "center",
           alignContent: "center",
           marginLeft: "auto",
           marginRight: "auto",
+          textAlign: "center",
         }}
       >
         Naito
@@ -67,7 +67,7 @@ export const AccountScreen = ({ navigation }) => {
 
       {user && (
         <View>
-          <Text>user.email</Text>
+          <Text>{user.email}</Text>
           <AuthButton
             icon="lock-open-outline"
             mode="contained"
@@ -91,7 +91,7 @@ export const AccountScreen = ({ navigation }) => {
             <AuthButton
               icon="email"
               mode="contained"
-              onPress={() => navigation.navigate("NoRegister")}
+              onPress={() => navigation.navigate("Register")}
               style={{ backgroundColor: "green" }}
             >
               Registrarse
@@ -99,12 +99,12 @@ export const AccountScreen = ({ navigation }) => {
           </Spacer>
           <Spacer size="large">
             <AuthButton
-              icon="baby-face-outline"
-              mode="contained"
-              onPress={() => navigation.navigate("Register")}
-              style={{ backgroundColor: "#D0421B" }}
+              icon="email"
+              mode="text"
+              onPress={() => navigation.navigate("ResetPassword")}
+              style={{ backgroundColor: "transparent" }}
             >
-              Continuar como invitado
+              Olvidé mi contraseña
             </AuthButton>
           </Spacer>
         </AccountContainer>

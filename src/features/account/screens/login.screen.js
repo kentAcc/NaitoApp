@@ -16,6 +16,7 @@ import { TextInput } from "react-native-paper";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 import LottieView from "lottie-react-native";
+import { Link } from "@react-navigation/native";
 export const LoginScreen = ({ navigation }) => {
   const { onLogin, user, error, isLoading } = useContext(AuthenticationContext);
   const [email, setEmail] = useState("");
@@ -85,10 +86,11 @@ export const LoginScreen = ({ navigation }) => {
               <AuthButton
                 icon="lock-open-outline"
                 mode="contained"
+                disabled={email && password ? false : true}
                 onPress={handleLogin}
                 style={{ backgroundColor: "#4975F6" }}
               >
-                Login
+                Iniciar sessión
               </AuthButton>
             ) : (
               <ActivityIndicator animating={true} color="red" />
@@ -101,7 +103,18 @@ export const LoginScreen = ({ navigation }) => {
               onPress={() => navigation.navigate("Register")}
               style={{ backgroundColor: "green" }}
             >
-              Register
+              Registrarse
+            </AuthButton>
+          </Spacer>
+
+          <Spacer size="large">
+            <AuthButton
+              icon="lock-open-outline"
+              mode="contained"
+              onPress={() => navigation.navigate("Register")}
+              style={{ backgroundColor: "green" }}
+            >
+              Registrarse
             </AuthButton>
           </Spacer>
         </AccountContainer>

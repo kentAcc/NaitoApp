@@ -16,11 +16,10 @@ import { ActivityIndicator, HelperText, Snackbar } from "react-native-paper";
 import { CartContext } from "../../../services/cart/cart.context";
 
 export const NoRegisterScreen = ({ navigation }) => {
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
   const onToggleSnackBar = () => setVisible(!visible);
-
+  const [repeatedPassword, setRepeatedPassword] = useState("");
   const onDismissSnackBar = () => setVisible(false);
-
   const [ciudad, setCiudad] = useState("rfwe");
   const [colonia, setColonia] = useState("asd");
   const [email, SetEmail] = useState("asd@");
@@ -29,7 +28,9 @@ export const NoRegisterScreen = ({ navigation }) => {
   const [estado, SetEstado] = useState("asd");
   const [nombre, setNombre] = useState("asd");
   const [entrecalles, setEntreCalles] = useState("asd");
-  const { error, isLoading, OnNoRegister } = useContext(AuthenticationContext);
+  const { error, isLoading, OnNoRegister, user } = useContext(
+    AuthenticationContext
+  );
   const { cart, total, count, cleanCart } = useContext(CartContext);
   const hasError = () => {
     if (!telefono || !ciudad || !email.includes("@")) return true;

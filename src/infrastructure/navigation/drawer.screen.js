@@ -1,5 +1,11 @@
 import React, { useContext } from "react";
-import { Button, View, useState, TouchableOpacity } from "react-native";
+import {
+  Button,
+  View,
+  useState,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Search } from "../../components/screens/search.component";
 import { Ionicons } from "@expo/vector-icons";
@@ -7,13 +13,16 @@ import { ProductsNavigator } from "./products.navigator";
 import { CartInfoComponent } from "../../features/cart/cart.info.component";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { AccountNavigator } from "./account.navigator";
-import { Badge } from "react-native-paper";
+import { Badge, Divider } from "react-native-paper";
 import { PedidosNavigator } from "./pedidos.navigator";
 import { CartContext } from "../../../src/services/cart/cart.context";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import Octicons from "@expo/vector-icons/Octicons";
+
 const Drawer = createDrawerNavigator();
 
 export default function DrawerScreen() {
-  const { count, isLoading } = useContext(CartContext);
+  const { count } = useContext(CartContext);
   return (
     <Drawer.Navigator initialRouteName="Home2">
       <Drawer.Screen
@@ -26,6 +35,9 @@ export default function DrawerScreen() {
             backgroundColor: "#EDD901",
             marginLeft: 10,
           },
+          drawerIcon: ({ focused, size }) => (
+            <Octicons name="home" size={24} color="#138000" />
+          ),
           headerTitleContainerStyle: {
             paddingTop: 0,
           },
@@ -77,24 +89,20 @@ export default function DrawerScreen() {
           headerTitleContainerStyle: {
             paddingTop: 0,
           },
+          drawerIcon: ({ focused, size }) => (
+            <Octicons name="list-ordered" size={24} color="#3483FA" />
+          ),
           headerTitle: "Pedidos de hoy",
           headerStyle: { backgroundColor: "#EDD901" },
           headerLeft: () => (
             <>
-              <AntDesign
-                name="menuunfold"
-                size={24}
-                color="black"
-                onPress={() => navigation.openDrawer()}
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  verticalAlign: "middle",
-                  padding: 0,
-                  margin: "auto",
-                  marginLeft: 20,
-                }}
-              />
+              <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <Ionicons
+                  name="menu"
+                  size={30}
+                  style={{ marginLeft: 20 }}
+                ></Ionicons>
+              </TouchableOpacity>
             </>
           ),
         })}
@@ -105,31 +113,41 @@ export default function DrawerScreen() {
         options={({ navigation }) => ({
           title: "Carrito",
           headerTintColor: "black",
+          style: { backgroundColor: "red" },
           headerLeftContainerStyle: {
-            backgroundColor: "#EDD901",
             marginLeft: 10,
           },
+          headerTitleContainerStyle: { backgroundColor: "red" },
           headerTitleContainerStyle: {
             paddingTop: 0,
           },
+          drawerIcon: ({ focused, size }) => (
+            <>
+              <View style={[count > 0 ? styles.marginleft : ""]}>
+                <Ionicons
+                  name="cart-outline"
+                  size={25}
+                  color="#757575"
+                ></Ionicons>
+                {count > 0 && (
+                  <Badge style={{ marginTop: -27, marginLeft: 25 }}>
+                    {count}
+                  </Badge>
+                )}
+              </View>
+            </>
+          ),
           headerTitle: "Carrito de pedidos",
           headerStyle: { backgroundColor: "#EDD901" },
           headerLeft: () => (
             <>
-              <AntDesign
-                name="menuunfold"
-                size={24}
-                color="black"
-                onPress={() => navigation.openDrawer()}
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  verticalAlign: "middle",
-                  padding: 0,
-                  margin: "auto",
-                  marginLeft: 20,
-                }}
-              />
+              <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <Ionicons
+                  name="menu"
+                  size={30}
+                  style={{ marginLeft: 20 }}
+                ></Ionicons>
+              </TouchableOpacity>
             </>
           ),
         })}
@@ -144,6 +162,9 @@ export default function DrawerScreen() {
             backgroundColor: "#EDD901",
             marginLeft: 10,
           },
+          drawerIcon: ({ focused, size }) => (
+            <MaterialIcons name="account-circle" size={24} color="#D0421B" />
+          ),
           headerTitleContainerStyle: {
             paddingTop: 0,
           },
@@ -151,20 +172,13 @@ export default function DrawerScreen() {
           headerStyle: { backgroundColor: "#EDD901" },
           headerLeft: () => (
             <>
-              <AntDesign
-                name="menuunfold"
-                size={24}
-                color="black"
-                onPress={() => navigation.openDrawer()}
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  verticalAlign: "middle",
-                  padding: 0,
-                  margin: "auto",
-                  marginLeft: 20,
-                }}
-              />
+              <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <Ionicons
+                  name="menu"
+                  size={30}
+                  style={{ marginLeft: 20 }}
+                ></Ionicons>
+              </TouchableOpacity>
             </>
           ),
         })}
@@ -172,3 +186,8 @@ export default function DrawerScreen() {
     </Drawer.Navigator>
   );
 }
+const styles = StyleSheet.create({
+  marginleft: {
+    marginRight: -22,
+  },
+});

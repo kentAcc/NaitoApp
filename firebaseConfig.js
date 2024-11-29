@@ -37,3 +37,4 @@ if (!auth) {
 export const db = getFirestore(firebaseApp);
 
 export { auth };
+ 

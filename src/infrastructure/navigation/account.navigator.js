@@ -6,6 +6,7 @@ import { AccountScreen } from "../../features/account/screens/account.screen";
 import { LoginScreen } from "../../features/account/screens/login.screen";
 import { RegisterScreen } from "../../features/account/screens/register.screen";
 import { NoRegisterScreen } from "../../features/account/screens/noregister.screen";
+import { ResetPasswordScreen } from "../../features/account/screens/resetPassword.screen";
 const Stack = createStackNavigator();
 const createScreenOptions = ({ route }) => {
   return {
@@ -24,5 +25,6 @@ export const AccountNavigator = () => (
     <Stack.Screen name="Login" component={LoginScreen} />
     <Stack.Screen name="Register" component={RegisterScreen} />
     <Stack.Screen name="NoRegister" component={NoRegisterScreen} />
+    <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
   </Stack.Navigator>
 );

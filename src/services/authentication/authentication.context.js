@@ -1,8 +1,12 @@
 import React, { useState, createContext, useEffect } from "react";
-import LoginRequest, { Register, NoRegister } from "./authentication.service";
+import LoginRequest, {
+  Register,
+  NoRegister,
+  ResetPassword,
+} from "./authentication.service";
 export const AuthenticationContext = createContext();
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../../../firebaseConfig";
+import { auth, db } from "../../../firebaseConfig";
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,13 +32,34 @@ export const AuthenticationContextProvider = ({ children }) => {
         setError(e.message);
       });
   };
-
+  const resetpassword = async (email) => {
+    console.log("from context", email);
+    setError("");
+    setIsLoading(true);
+    await ResetPassword(email)
+      .then((response) => {
+        console.log(response, "response");
+        //setUser(user);
+        //setIsAuthenticated(true);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setIsLoading(false);
+        setError(e.message);
+      });
+  };
   const register = async ({
     email,
     password,
     repeatedPassword,
-    address,
-    name,
+    telefono,
+    nombre,
+    estado,
+    ciudad,
+    colonia,
+    cp,
+    entrecalles,
   }) => {
     setError("");
     setIsLoading(true);
@@ -43,12 +68,24 @@ export const AuthenticationContextProvider = ({ children }) => {
       setIsLoading(false);
       return setError("password does not match");
     }
-    await Register(email, password, repeatedPassword, address, name)
+    await Register(
+      email,
+      password,
+      repeatedPassword,
+      telefono,
+      nombre,
+      estado,
+      ciudad,
+      colonia,
+      cp,
+      entrecalles
+    )
       .then((user) => {
         setUser(user);
         setIsLoading(false);
       })
       .catch((e) => {
+        console.log(e.message, "");
         setError(e.message);
         setIsLoading(false);
       });
@@ -104,6 +141,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         onRegister: register,
         onLogout: logout,
         OnNoRegister: OnNoRegister,
+        OnResetPassword: resetpassword,
       }}
     >
       {children}
