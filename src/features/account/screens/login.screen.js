@@ -109,12 +109,12 @@ export const LoginScreen = ({ navigation }) => {
 
           <Spacer size="large">
             <AuthButton
-              icon="lock-open-outline"
-              mode="contained"
-              onPress={() => navigation.navigate("Register")}
-              style={{ backgroundColor: "green" }}
+              icon="email"
+              mode="text"
+              onPress={() => navigation.navigate("ResetPassword")}
+              style={{ backgroundColor: "transparent" }}
             >
-              Registrarse
+              Olvidé mi contraseña
             </AuthButton>
           </Spacer>
         </AccountContainer>

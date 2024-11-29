@@ -249,12 +249,7 @@ export const RegisterScreen = ({ navigation }) => {
                 </AuthButton>
               </Spacer>
               <Spacer size="large">
-                <AuthButton
-                  mode="contained"
-                  onPress={() => navigation.goBack()}
-                >
-                  Regresar
-                </AuthButton>
+                <AuthButton mode="contained">Regresar</AuthButton>
               </Spacer>
             </>
           ) : (

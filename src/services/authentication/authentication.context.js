@@ -33,7 +33,6 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
   const resetpassword = async (email) => {
-    console.log("from context", email);
     setError("");
     setIsLoading(true);
     await ResetPassword(email)

@@ -120,7 +120,6 @@ export const NoRegister = async ({
   });
 };
 export const ResetPassword = async (email) => {
-  console.log("from service", email);
   await sendPasswordResetEmail(auth, email);
 };
 export default LoginRequest;
