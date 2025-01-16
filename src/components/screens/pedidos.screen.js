@@ -90,7 +90,7 @@ const PedidosScreen = ({ navigation }) => {
                 numberOfItemsPerPage={itemsPerPage}
                 onItemsPerPageChange={onItemsPerPageChange}
                 showFastPaginationControls
-                selectPageDropdownLabel={"Rows per page"}
+                selectPageDropdownLabel={"Renglones por página"}
               />
             )}
           </DataTable>

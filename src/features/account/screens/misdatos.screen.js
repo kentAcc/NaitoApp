@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { ScrollView, View, StyleSheet } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
   AccountBackground,
   AccountCover,
@@ -14,7 +14,7 @@ import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { ActivityIndicator, HelperText, Snackbar } from "react-native-paper";
-export const RegisterScreen = ({ navigation }) => {
+export const MisDatosScreen = ({ navigation }) => {
   const [password, setPassword] = useState("1234567");
   const [ciudad, setCiudad] = useState("ciudad");
   const [colonia, setColonia] = useState("asd");
@@ -26,8 +26,6 @@ export const RegisterScreen = ({ navigation }) => {
   const [entrecalles, setEntreCalles] = useState("asd");
   const [visible, setVisible] = useState(false);
   const [hasError, setHasError] = useState(false);
-
-  const [snackbarMessage, setSnackbarMessage] = useState("");
   const { onRegister, errordatos, isLoading } = useContext(
     AuthenticationContext
   );
@@ -45,18 +43,7 @@ export const RegisterScreen = ({ navigation }) => {
 
   useEffect(() => {
     CheckhasError();
-    checkDataError();
-  }, [telefono, ciudad, email, password, errordatos]);
-
-  function checkDataError() {
-    if (errordatos) {
-      setHasError(true);
-      setMensaje(`ocurrió un error al registrarse:${errordatos}`);
-      onToggleSnackBar();
-    } else {
-      setHasError(false);
-    }
-  }
+  }, [telefono, ciudad, email, password]);
 
   const goback = () => {
     console.log(navigation.goBack());
@@ -75,17 +62,16 @@ export const RegisterScreen = ({ navigation }) => {
         cp,
         entrecalles,
       });
-
-      if (errordatos) {
-        setHasError(true);
+      if (errordatos)
         setMensaje(`ocurrió un error al registrarse:${errordatos}`);
-        onToggleSnackBar();
-      }
+      setMensaje("Registro exitoso!");
+      onToggleSnackBar();
+      // Navigate to the next screen or perform further actions
     } catch (e) {
+      //setError(e.message);
       console.log(e.message);
     }
   };
-
   return (
     <ScrollView>
       <AccountBackground>
@@ -242,7 +228,7 @@ export const RegisterScreen = ({ navigation }) => {
             <>
               <Spacer size="large">
                 <AuthButton
-                  icon="content-save-check"
+                  icon="email"
                   mode="contained"
                   onPress={handleLogin}
                   disabled={hasError}
@@ -252,7 +238,7 @@ export const RegisterScreen = ({ navigation }) => {
               </Spacer>
               <Spacer size="large">
                 <AuthButton
-                  icon="keyboard-backspace"
+                  icon="email"
                   mode="contained"
                   onPress={goback}
                   disabled={hasError}
@@ -282,7 +268,6 @@ export const RegisterScreen = ({ navigation }) => {
             <Snackbar
               position="bottom"
               visible={visible}
-              style={[errordatos ? styles.red : styles.black]}
               onDismiss={onDismissSnackBar}
               wrapperStyle={{ flex: 1 }}
               action={{
@@ -300,12 +285,3 @@ export const RegisterScreen = ({ navigation }) => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  red: {
-    backgroundColor: "red",
-  },
-  black: {
-    backgroundColor: "grey",
-  },
-});

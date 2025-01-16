@@ -120,6 +120,8 @@ export const NoRegister = async ({
   });
 };
 export const ResetPassword = async (email) => {
-  await sendPasswordResetEmail(auth, email);
+  await sendPasswordResetEmail(auth, email).then(() => {
+    return true;
+  });
 };
 export default LoginRequest;

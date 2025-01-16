@@ -28,9 +28,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <GestureHandlerRootView>
-        <PedidosContextProvider>
-          <CartContextProvider>
-            <AuthenticationContextProvider>
+        <AuthenticationContextProvider>
+          <PedidosContextProvider>
+            <CartContextProvider>
               <StatusBar
                 animated={true}
                 backgroundColor="#EDD901"
@@ -40,9 +40,9 @@ export default function App() {
               />
 
               <Navigation />
-            </AuthenticationContextProvider>
-          </CartContextProvider>
-        </PedidosContextProvider>
+            </CartContextProvider>
+          </PedidosContextProvider>
+        </AuthenticationContextProvider>
       </GestureHandlerRootView>
     </ThemeProvider>
   );

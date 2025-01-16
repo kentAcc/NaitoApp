@@ -12,7 +12,7 @@ export const PedidoInfoComponent = ({ route }) => {
   return (
     <>
       <ScrollView style={{}}>
-        {item.data.cart.length > 0 && (
+        {item.cart.length > 0 && (
           <View
             style={{
               borderRadius: 10,
@@ -24,7 +24,7 @@ export const PedidoInfoComponent = ({ route }) => {
             <Text style={{ margin: 10 }}>Productos</Text>
             <Divider />
 
-            {item.data.cart.map((item, index) => (
+            {item.cart.map((item, index) => (
               <ItemPedidosComponent
                 key={item.id}
                 item={item}

@@ -11,12 +11,13 @@ import { auth, db } from "../../../firebaseConfig";
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
+  const [errordatos, setError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   onAuthStateChanged(auth, (user) => {
     setUser(user);
   });
+
   const getLogin = async ({ email, password }) => {
     setError("");
     setIsLoading(true);
@@ -24,7 +25,6 @@ export const AuthenticationContextProvider = ({ children }) => {
       .then((user) => {
         setUser(user);
         setIsAuthenticated(true);
-
         setIsLoading(false);
       })
       .catch((e) => {
@@ -32,21 +32,21 @@ export const AuthenticationContextProvider = ({ children }) => {
         setError(e.message);
       });
   };
+
+  const resetErrors = () => {
+    setError("");
+  };
+
   const resetpassword = async (email) => {
     setError("");
     setIsLoading(true);
-    await ResetPassword(email)
-      .then((response) => {
-        console.log(response, "response");
-        //setUser(user);
-        //setIsAuthenticated(true);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        setIsLoading(false);
-        setError(e.message);
-      });
+    const resp = await ResetPassword(email).catch((e) => {
+      setError(e.message);
+
+      setIsLoading(false);
+    });
+
+    setIsLoading(false);
   };
   const register = async ({
     email,
@@ -65,29 +65,30 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     if (password != repeatedPassword) {
       setIsLoading(false);
-      return setError("password does not match");
+      return setError("la contraseña no coincide");
     }
-    await Register(
-      email,
-      password,
-      repeatedPassword,
-      telefono,
-      nombre,
-      estado,
-      ciudad,
-      colonia,
-      cp,
-      entrecalles
-    )
-      .then((user) => {
+
+    try {
+      await Register(
+        email,
+        password,
+        repeatedPassword,
+        telefono,
+        nombre,
+        estado,
+        ciudad,
+        colonia,
+        cp,
+        entrecalles
+      ).then((user) => {
         setUser(user);
         setIsLoading(false);
-      })
-      .catch((e) => {
-        console.log(e.message, "");
-        setError(e.message);
-        setIsLoading(false);
       });
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+      console.log(e, "desdecontext");
+    }
   };
 
   const OnNoRegister = async ({
@@ -135,12 +136,13 @@ export const AuthenticationContextProvider = ({ children }) => {
         user,
         isLoading,
         isAuthenticated,
-        error,
+        errordatos,
         onLogin: getLogin,
         onRegister: register,
         onLogout: logout,
         OnNoRegister: OnNoRegister,
         OnResetPassword: resetpassword,
+        resetErrors,
       }}
     >
       {children}

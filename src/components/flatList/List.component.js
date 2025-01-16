@@ -5,7 +5,7 @@ import CardItem from "./card.component"; // Adjust the path if necessary
 import { ProductsRandomContext } from "../../services/productRandom/productsRandom.context";
 import { View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-
+import { ActivityIndicator, HelperText, Snackbar } from "react-native-paper";
 export const ListComponent = ({ props }) => {
   const { isLoadingB, errorB, productsC } = useContext(ProductsRandomContext);
 
@@ -34,22 +34,28 @@ export const ListComponent = ({ props }) => {
           shadowRadius: 3,
         }}
       >
-        <FlatList
-          data={productsC}
-          renderItem={({ item, index }) => (
-            <View
-              style={{
-                resizeMode: "contain",
-                flex: 1,
-              }}
-            >
-              <TouchableOpacity onPress={() => actionOnRow(item)}>
-                <CardItem item={item} key={item.id}></CardItem>
-              </TouchableOpacity>
-              <Divider></Divider>
-            </View>
-          )}
-        />
+        {!isLoadingB ? (
+          <FlatList
+            data={productsC}
+            renderItem={({ item, index }) => (
+              <View
+                style={{
+                  resizeMode: "contain",
+                  flex: 1,
+                }}
+              >
+                <TouchableOpacity onPress={() => actionOnRow(item)}>
+                  <CardItem item={item} key={item.id}></CardItem>
+                </TouchableOpacity>
+                <Divider></Divider>
+              </View>
+            )}
+          />
+        ) : (
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+        )}
       </View>
       <View
         style={{
@@ -83,5 +89,19 @@ const styles = StyleSheet.create({
     shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  loading: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

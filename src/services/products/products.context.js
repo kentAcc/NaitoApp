@@ -37,6 +37,7 @@ export const ProductsContextProvider = ({ children }) => {
         setIsLoading(false);
       });
   }, [keyword]);
+
   return (
     <ProductsContext.Provider
       value={{

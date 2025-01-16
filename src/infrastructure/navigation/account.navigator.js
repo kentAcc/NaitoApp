@@ -22,7 +22,6 @@ const createScreenOptions = ({ route }) => {
 export const AccountNavigator = () => (
   <Stack.Navigator screenOptions={createScreenOptions}>
     <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="Screen" component={AccountScreen} />
     <Stack.Screen name="Register" component={RegisterScreen} />
     <Stack.Screen name="NoRegister" component={NoRegisterScreen} />
     <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />

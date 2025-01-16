@@ -27,19 +27,31 @@ export const NoRegisterScreen = ({ navigation }) => {
   const [telefono, setTelefono] = useState("5563392403");
   const [estado, SetEstado] = useState("asd");
   const [nombre, setNombre] = useState("asd");
-  const [entrecalles, setEntreCalles] = useState("asd");
-  const { error, isLoading, OnNoRegister, user } = useContext(
+  const [entrecalles, SetEntreCalles] = useState("asd");
+  const { errordatos, isLoading, OnNoRegister, user } = useContext(
     AuthenticationContext
   );
   const { cart, total, count, cleanCart } = useContext(CartContext);
   const hasError = () => {
-    if (!telefono || !ciudad || !email.includes("@")) return true;
+    if (
+      !ciudad ||
+      telefono.length < 10 ||
+      !colonia ||
+      !email ||
+      !cp ||
+      !telefono ||
+      !estado ||
+      !nombre ||
+      !entrecalles ||
+      !email.includes("@")
+    )
+      return true;
     else {
       return false;
     }
   };
 
-  async function hola() {
+  async function Register() {
     await OnNoRegister({
       email,
       nombre,
@@ -75,6 +87,9 @@ export const NoRegisterScreen = ({ navigation }) => {
           />
           <HelperText type="error" visible={!telefono}>
             Teléfono es requerido
+          </HelperText>
+          <HelperText type="error" visible={telefono.length < 10}>
+            Número de teléfono incorrecto
           </HelperText>
           <Spacer size="small">
             <AuthInput
@@ -162,16 +177,16 @@ export const NoRegisterScreen = ({ navigation }) => {
               value={entrecalles}
               mode="outlined"
               autoCapitalize="none"
-              onChangeText={(p) => setEntreCalles(entrecalles)}
+              onChangeText={(p) => SetEntreCalles(p)}
             />
-            <HelperText type="error" visible={!cp}>
+            <HelperText type="error" visible={!entrecalles}>
               Entre calles
             </HelperText>
           </Spacer>
 
-          {error && (
+          {errordatos && (
             <ErrorContainer size="large">
-              <Text variant="error">{error}</Text>
+              <Text variant="error">{errordatos}</Text>
             </ErrorContainer>
           )}
 
@@ -181,11 +196,14 @@ export const NoRegisterScreen = ({ navigation }) => {
                 <AuthButton
                   icon="email"
                   mode="contained"
-                  onPress={hola}
+                  onPress={Register}
                   disabled={hasError() || count < 1}
                 >
                   Confirmar
                 </AuthButton>
+                <HelperText type="error" visible={hasError()}>
+                  Revisar información capturada
+                </HelperText>
               </Spacer>
               <Spacer size="large">
                 <AuthButton

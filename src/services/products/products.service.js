@@ -1,4 +1,17 @@
 import services from "../../services/products/products.json";
+import { auth, db } from "../../../firebaseConfig";
+import {
+  collection,
+  setDoc,
+  doc,
+  addDoc,
+  getDocs,
+  get,
+  where,
+  getDoc,
+  query,
+} from "firebase/firestore";
+
 const products = Array.from(services);
 
 export const productsRequest = (search, slice) => {
@@ -37,4 +50,16 @@ export const productsRandom = () => {
 
     resolve(filter);
   });
+};
+
+export const GetProductsAll = async () => {
+  const collectionRef = collection(db, "Products"); // Replace with your collection name
+
+  const snapshot = await getDocs(collectionRef); // Fetch all documents
+  const dataArray = snapshot.docs.map((doc) => ({
+    id: doc.id, // Document ID
+    ...doc.data(), // Document data
+  }));
+
+  return dataArray;
 };

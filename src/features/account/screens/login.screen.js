@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AccountStyle from "../component/account.style";
 import { View, Button, Text, StyleSheet } from "react-native";
 import { LoginRequest } from "../../../services/authentication/authentication.service";
@@ -16,9 +16,11 @@ import { TextInput } from "react-native-paper";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 import LottieView from "lottie-react-native";
-import { Link } from "@react-navigation/native";
+
 export const LoginScreen = ({ navigation }) => {
-  const { onLogin, user, error, isLoading } = useContext(AuthenticationContext);
+  const { onLogin, user, errordatos, isLoading, resetErrors } = useContext(
+    AuthenticationContext
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //const [error, setError] = useState("");
@@ -33,6 +35,13 @@ export const LoginScreen = ({ navigation }) => {
       console.log(e.message);
     }
   };
+
+  useEffect(() => {
+    if (!isLoading) {
+      resetErrors();
+    }
+  }, [isLoading]);
+
   return (
     <>
       <AccountBackground>
@@ -80,7 +89,7 @@ export const LoginScreen = ({ navigation }) => {
             underlineColor="#4975F6"
           />
 
-          {error ? <Text style={styles.error}>{error}</Text> : null}
+          {errordatos ? <Text style={styles.error}>{errordatos}</Text> : null}
           <Spacer size="large">
             {!isLoading ? (
               <AuthButton
@@ -98,7 +107,7 @@ export const LoginScreen = ({ navigation }) => {
           </Spacer>
           <Spacer size="large">
             <AuthButton
-              icon="lock-open-outline"
+              icon="database"
               mode="contained"
               onPress={() => navigation.navigate("Register")}
               style={{ backgroundColor: "green" }}
@@ -109,7 +118,7 @@ export const LoginScreen = ({ navigation }) => {
 
           <Spacer size="large">
             <AuthButton
-              icon="email"
+              icon="account-off-outline"
               mode="text"
               onPress={() => navigation.navigate("ResetPassword")}
               style={{ backgroundColor: "transparent" }}

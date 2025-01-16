@@ -5,6 +5,7 @@ import { Button, Card, TextInput, ActivityIndicator } from "react-native-paper";
 import { CartContext } from "../../services/cart/cart.context";
 import { SliderBox } from "react-native-image-slider-box";
 import styled from "styled-components/native";
+import { ProductsRandomContext } from "../../services/productRandom/productsRandom.context";
 
 export const Detail = ({ route, navigation }) => {
   const {
@@ -17,7 +18,10 @@ export const Detail = ({ route, navigation }) => {
     detail,
     largedetail,
   } = route.params;
-  const { addCart, setCart, isLoading } = useContext(CartContext);
+  const { addCart } = useContext(CartContext);
+
+  const { isLoadingB } = useContext(ProductsRandomContext);
+
   const [disabledView, setDisabledView] = useState(false);
   function hola() {
     () => {
@@ -47,9 +51,7 @@ export const Detail = ({ route, navigation }) => {
       setIsDisabled(false);
     }, 2000);
   };
-  useEffect(() => {
- 
-  }, [isDisabled]);
+  useEffect(() => {}, [isDisabled]);
 
   const temp = photos.map((data, i) => {
     return data;
@@ -65,6 +67,7 @@ export const Detail = ({ route, navigation }) => {
   `;
   const TextoSaber = styled.Text`
     font-size: ${(props) => props.theme.fontSizes.body};
+    line-height: 30;
   `;
   const ViewSaber = styled.ScrollView`
     margin-top: 15px;
@@ -74,8 +77,9 @@ export const Detail = ({ route, navigation }) => {
     margin-bottom: 5;
     margin-left: 10;
     margin-right: 10;
-    margin-top: 10;
-    border-color: red;
+    margin-top: 0;
+    border-color: "#D84B11";
+    height: 40;
   `;
 
   TextInput;
@@ -101,6 +105,8 @@ export const Detail = ({ route, navigation }) => {
             color: "white",
             borderRadius: 4,
             marginTop: 4,
+            paddingBottom: 0,
+            marginBottom: 0,
           }}
         >
           Nuevo
@@ -108,50 +114,59 @@ export const Detail = ({ route, navigation }) => {
         <Card.Title
           title={`${name}`}
           subtitle="Envío gratis"
-          subtitleStyle={{ color: "green" }}
+          subtitleStyle={{ color: "green", marginTop: -5 }}
+          titleStyle={{ marginTop: -10 }}
+          style={{ marginTop: -5 }}
         />
-        <SliderBox
-          images={temp}
-          onCurrentImagePressed={(index) =>
-            console.warn(`image ${index} pressed`)
-          }
-          dotColor="blue"
-          inactiveDotColor="#90A4AE"
-          paginationBoxVerticalPadding={20}
-          autoplay
-          circleLoop
-          resizeMethod={"resize"}
-          resizeMode={"cover"}
-          paginationBoxStyle={{
-            position: "absolute",
-            bottom: -40,
-            padding: 10,
-            alignItems: "center",
-            alignSelf: "center",
-            justifyContent: "center",
-          }}
-          dotStyle={{
-            width: 10,
-            height: 10,
-            borderRadius: 10,
-            marginHorizontal: 0,
-            padding: 0,
-            margin: 0,
-            backgroundColor: "rgba(128, 128, 128, 0.92)",
-          }}
-          ImageComponentStyle={{
-            borderRadius: 1,
-            height: 250,
-            width: 300,
-            marginTop: 5,
-            objectFit: "cover",
-          }}
-          imageLoadingColor="#2196F3"
-        />
-        <Card.Content style={{ paddingTop: 20 }}>
+
+        {!isLoadingB ? (
+          <>
+            <SliderBox
+              images={temp}
+              onCurrentImagePressed={(index) =>
+                console.warn(`image ${index} pressed`)
+              }
+              dotColor="blue"
+              inactiveDotColor="#90A4AE"
+              paginationBoxVerticalPadding={20}
+              autoplay
+              circleLoop
+              resizeMethod={"resize"}
+              resizeMode={"cover"}
+              paginationBoxStyle={{
+                position: "absolute",
+                bottom: -40,
+                padding: 10,
+                alignItems: "center",
+                alignSelf: "center",
+                justifyContent: "center",
+              }}
+              dotStyle={{
+                width: 10,
+                height: 10,
+                borderRadius: 10,
+                marginHorizontal: 0,
+                padding: 0,
+                margin: 0,
+                backgroundColor: "rgba(128, 128, 128, 0.92)",
+              }}
+              ImageComponentStyle={{
+                borderRadius: 1,
+                height: 300,
+                width: 300,
+                marginTop: 5,
+                objectFit: "cover",
+              }}
+              imageLoadingColor="#2196F3"
+            />
+          </>
+        ) : (
+          <ActivityIndicator animating={true} color={"red"} />
+        )}
+
+        <Card.Content style={{ paddingTop: 15 }}>
           <Pricetext>{currencyFormat(price)}</Pricetext>
         </Card.Content>
-        <Card.Actions></Card.Actions>
       </Card>
 
       <TextInputP
@@ -162,7 +177,7 @@ export const Detail = ({ route, navigation }) => {
         keyboardType="numeric"
         value={newquantity}
         onChangeText={(text) => {
-          setQuantity(text);
+          if (text != "0") setQuantity(text);
         }}
       />
       {!disabledView ? (
@@ -172,7 +187,7 @@ export const Detail = ({ route, navigation }) => {
               (!newquantity ? styles.silver : styles.orange,
               { marginLeft: 10, marginRight: 10, borderRadius: 5 })
             }
-            disabled={isDisabled}
+            disabled={isDisabled || !newquantity || newquantity == "0"}
             elevated={2}
             mode="contained"
             onPress={handleClick}
@@ -191,9 +206,8 @@ export const Detail = ({ route, navigation }) => {
       )}
 
       <ViewSaber>
-        <TextoSaber>Lo que debes saber del producto</TextoSaber>
         <TextoSaber>{detail}</TextoSaber>
-        <TextoSaber>Detalle</TextoSaber>
+
         <TextoSaber>{largedetail}</TextoSaber>
       </ViewSaber>
     </>

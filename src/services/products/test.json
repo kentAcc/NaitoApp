@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "format": "JSON",
+    "version": "1.1.0",
+    "projectId": "naito-f73f7",
+    "resourcePath": ["Products"],
+    "recursive": false,
+    "creationTime": 1736971333,
+    "app": "firefoo"
+  },
+  "data": {
+    "AtDur1y78HFnJ5TytMuh": {
+      "detail": "👨🏻‍⚕️Beneficios: 🦵Alivia el dolor de rodilla asociado con artritis, hinchazón, tensión, esguince y desgarro de menisco. 🦵Comprime la articulación de la rodilla para reducir la inflamación. 🦵Ayuda a corregir malos hábitos en la postura que conducen al dolor. 🦵Mejora la estabilidad de la rodilla, para ayudar a que las lesiones sanen más rápido y en la posición correcta. ✨Características: ✅ La Rodillera Térmica ayuda eficazmente a aliviar la fatiga y el dolor de las rodillas y piernas, cuenta con un sistema térmico que sirve como antiinflamatorio ayudando a mejorar la circulación de la sangre y a aliviar el dolor. ✅ Su diseño al ser ajustable y firme se puede usar en otras partes del cuerpo como; pantorrillas, muslos y brazos, aliviando el dolor muscular y los calambres. ✅ Bolsa de malla incorporada, que se puede colocar en una bolsa de hielo para compresas frías. ✅ Diseño ajustable y fijo con dos correas bifurcadas, cierre de gancho y bucle, también se puede usar en pantorrillas, muslos, brazos para aliviar el dolor muscular y los calambres. ✅ Control de 1 botón y ajuste a 3 niveles de la temperatura, muy fáciles de operar. ✅ El cable USB es para uso portátil y se puede conectar a cualquier fuente de alimentación con puerto USB (5V), que es fácil de usar. ✅ Portátil y fácil de poner en una maleta o bolso. 👣Modo de uso: 1) Relaja la rodilla. 2) Coloque su bolsa de cartucho en la capa interior. 3) Apriete y ajuste lentamente todas las correas de velcro empezando por la más baja primero, luego la mitad y finalmente la correa superior. 4) No apretar demasiado. Asegúrese de que puede deslizar dos dedos debajo de su cinturón de soporte. 5) Camine unos minutos para valorar su comodidad. 6) Conectar el cable de alimentación. 7) Pulse el botón para encender. 8) Pulse el botón para seleccionar la temperatura deseada. 📦 Incluye por empaque: 1 Rodillera térmica 1 Cable de alimentación USB",
+      "id": "1",
+      "name": "PAR RODILLERA TÉRMICA",
+      "photos": [
+        "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-5.15.12-PM-1.jpeg",
+        "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-5.15.11-PM-2-600x598.jpeg",
+        "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-5.15.11-PM-1-600x598.jpeg",
+        "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-5.15.11-PM-600x598.jpeg",
+        "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-5.15.11-PM-5-600x598.jpeg",
+        "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-5.15.11-PM-6-600x598.jpeg",
+        "https://tiendasnaito.com.mx/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-29-at-5.15.12-PM-600x598.jpeg"
+      ],
+      "price": 499.0,
+      "promocion": true,
+      "rating": "1",
+      "stock": "1",
+      "category": "Salud y belleza",
+      "__collections__": {}
+    }
+  }
+}

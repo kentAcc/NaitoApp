@@ -1,34 +1,36 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { View, TextInput, StyleSheet, Text, Button } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { AuthButton, AuthInput } from "../component/account.style";
+import { AuthButton, AuthInputlarge } from "../component/account.style";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { ActivityIndicator, HelperText, Snackbar } from "react-native-paper";
 export const ResetPasswordScreen = (props) => {
   const [email, setEmail] = useState("abraham.kent.7@gmail.com");
   const [message, setMessage] = useState("");
-  const { isLoading, OnResetPassword, error } = useContext(
+  const [valid, setValid] = useState(false);
+  const { isLoading, OnResetPassword, errordatos } = useContext(
     AuthenticationContext
   );
   const goback = () => {
-    console.log(props.navigation.goBack());
+    props.navigation.goBack();
   };
+
+  useEffect(() => {
+    if (valid)
+      setMessage("Se envío un mensaje a tu correo, favor de revisarlo");
+    else {
+      setMessage(`Ocurrió un error`);
+    }
+    if (message) onToggleSnackBar();
+  }, [valid]);
+
   const [visible, setVisible] = useState(false);
   const onDismissSnackBar = () => setVisible(false);
   const onToggleSnackBar = () => setVisible(!visible);
   const handlePasswordReset = async () => {
-    try {
-      // await OnResetPassword(email);
-
-      if (error) setMessage(`ocurrió un error al registrarse:${error}`);
-      setMessage("Se envío un mensaje a tu correo, favor de revisarlo");
-      onToggleSnackBar();
-      setTimeout(() => {
-        props.navigation.goBack();
-      }, 5000);
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    }
+    const res = await OnResetPassword(email);
+    setValid(res);
+    console.log("Valid111", Valid);
   };
   return (
     <>
@@ -63,9 +65,9 @@ export const ResetPasswordScreen = (props) => {
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.title}>Resetear passowrd</Text>
+        <Text style={styles.title}>Resetear contraseña</Text>
         <Spacer size="small">
-          <AuthInput
+          <AuthInputlarge
             theme={{ colors: { onSurfaceVariant: "#b0b0b0" } }}
             label="email"
             value={email}
@@ -96,7 +98,7 @@ export const ResetPasswordScreen = (props) => {
             </Spacer>
             <Spacer size="large">
               <AuthButton
-                icon="email"
+                icon="keyboard-backspace"
                 mode="contained"
                 onPress={goback}
                 style={{ backgroundColor: "#D0421B" }}
@@ -107,7 +109,7 @@ export const ResetPasswordScreen = (props) => {
           </>
         )}
 
-        {error ? <Text style={styles.message}>{error}</Text> : null}
+        {errordatos ? <Text style={styles.message}>{errordatos}</Text> : null}
       </View>
     </>
   );
@@ -124,13 +126,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
   },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingLeft: 8,
-  },
+
   message: {
     marginTop: 20,
     textAlign: "center",
