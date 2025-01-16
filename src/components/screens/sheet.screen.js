@@ -20,13 +20,12 @@ import {
   StyleSheet,
   BackHandler,
 } from "react-native";
-import { useTheme, Button } from "@rneui/themed";
 import styled from "styled-components/native";
 import { useIsFocused } from "@react-navigation/native";
 import SafeAreaView from "react-native-safe-area-view";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-
+import { Button as PaperButton } from "react-native-paper";
 export const SheetScreen = (property) => {
   const Pricetext = styled.Text`
     font-size: ${(props) => props.theme.fontSizes.title};
@@ -61,26 +60,13 @@ export const SheetScreen = (property) => {
             onChange={handleSheetChanges}
           >
             <View style={{ alignSelf: "flex-end", marginRight: 15 }}>
-              <Button
+              <PaperButton
                 onPress={() => {
                   bottomSheetModalRef.current?.close();
                 }}
-                title="><"
-                buttonStyle={{
-                  backgroundColor: "transparent",
-                  borderRadius: 3,
-                  paddingTop: 0,
-                  paddingBottom: 0,
-                  marginBottom: 0,
-                }}
-                titleStyle={{
-                  marginHorizontal: 0,
-                  color: "silver",
-                  fontSize: 23,
-                }}
               >
-                <Ionicons name="close" color="red" size={25} />
-              </Button>
+                <Ionicons name="close" color="green" size={25} />
+              </PaperButton>
             </View>
             <View
               style={{

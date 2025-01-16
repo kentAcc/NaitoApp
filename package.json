@@ -28,7 +28,6 @@
     "@react-navigation/native-stack": "^6.11.0",
     "@react-navigation/stack": "^6.4.1",
     "@rneui/base": "^4.0.0-rc.8",
-    "@rneui/themed": "github:react-native-elements/react-native-elements#themed",
     "@shopify/react-native-skia": "^1.5.0",
     "@types/react-native-snap-carousel": "^3.8.11",
     "axios": "^1.7.7",
